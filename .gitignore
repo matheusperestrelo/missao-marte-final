@@ -1,0 +1,24 @@
+# Dados gerados pelo jogo (contêm nomes e pontuações dos jogadores)
+ranking.json
+ranking*.json
+
+# Compilação
+out/
+build/
+.gradle/
+
+# Android
+local.properties
+
+# Banco H2 do servidor
+dados/
+
+# Segredos
+.env
+.env.*
+
+# IDE e sistema
+.idea/
+.vscode/
+*.iml
+.DS_Store
