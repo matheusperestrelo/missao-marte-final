@@ -22,3 +22,6 @@ dados/
 .vscode/
 *.iml
 .DS_Store
+
+# Worktree do orquestrador
+.claude/worktrees/
