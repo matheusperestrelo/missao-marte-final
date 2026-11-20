@@ -1,7 +1,7 @@
 # Tarefas: fase1-domain
 
-- [ ] 1. Criar a pasta da Fase 1 com `Direcao`, `Posicao` e `Mapa`
-  - status: review
+- [x] 1. Criar a pasta da Fase 1 com `Direcao`, `Posicao` e `Mapa`
+  - status: done
   - Criar `fases/fase-01-refatoracao/` com `.gitignore` (`out/`, `ranking.json`) e `src/missaomarte/domain/` com `Direcao`, `Posicao` (record) e `Mapa`, conforme o design.
   - Conferir que o `.workflow/check.sh` passa a compilar a Fase 1 e continua passando.
   - _Requisitos: R1, R2, R3_
