@@ -1,10 +1,10 @@
 # Tarefas: fase1-application
 
 - [ ] 1. Criar `Acao` e `Dificuldade` com parâmetros
-  - status: todo
+  - status: review
   - Em `fases/fase-01-refatoracao/src/missaomarte/application/`, conforme o design; tabela de parâmetros de R2.1.
   - _Requisitos: R1, R2_
-  - notas:
+  - notas: `Acao` (deTexto pelo primeiro caractere, direcao(), ehMovimento()) e `Dificuldade` (parâmetros da tabela R2.1, deString/toString como na Fase 0) criados. Sem JUnit na Fase 1 (verificação por inspeção): conferi R1.1-R1.4 e R2.1-R2.4 com um programa descartável fora do repositório. Pendências da fase1-domain (missão sem passageiros, embarcar só por `missao.embarcar`) não pertencem a esta tarefa; ficam para as tarefas 2 e 4.
 
 - [ ] 2. Criar `MissaoFactory`
   - status: todo
