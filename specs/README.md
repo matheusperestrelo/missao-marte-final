@@ -4,7 +4,6 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 3 | fase1-console-infra | #6 | B | 2 | aguardando QA | Console com as frases da Fase 0, ranking em arquivo JSON, `Main` de composição e `build.sh` |
 
 ## Backlog (planned/)
 
@@ -26,3 +25,4 @@ aberto. Cada briefing vira specs em `active/` quando a fase for planejada.
 |---|---|---|---|
 | 1 | fase1-domain | 2026-11-20 | Cria a pasta da Fase 1 e a camada `domain` (posição, mapa, nave, passageiros, perigos, missão) |
 | 2 | fase1-application | 2026-11-20 | `Acao`, `Dificuldade` com parâmetros, `MissaoFactory`, `GameSession` com eventos do turno, regra do Top 5 |
+| 3 | fase1-console-infra | 2026-11-20 | Console com as frases da Fase 0, ranking em arquivo JSON, `Main` de composição e `build.sh` |
