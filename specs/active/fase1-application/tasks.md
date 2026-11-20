@@ -24,8 +24,8 @@
   - _Requisitos: R4, R5, R6_
   - notas: `GameSession` criada seguindo o pseudocódigo do design (java.time.Clock; duração = (fim − início)/1000 congelada ao terminar, calculada ao vivo enquanto em andamento). Sem JUnit na Fase 1: R4-R6 por inspeção; check.sh passou e o grep de R8.2 na `application` não encontrou nada. Pendências da fase1-domain: o embarque usa só `missao.embarcar(p)` (nunca `nave.embarcar`), mantendo a conta a bordo + entregues + restantes (R6.1); missão sem passageiros não ocorre, pois toda `Dificuldade` tem >= 4 passageiros e a fábrica os cria sempre (sem tratamento extra em `iniciar`). Sugestão da revisão 03-r1 aplicada: `ResultadoTurno` recebe `List.copyOf(eventos)` na `GameSession` (o record não foi alterado). Em `INVALIDA`/`SAIR` a lista é `List.of()`. `jogar` após o fim não é protegido (design: o console nunca chama).
 
-- [ ] 5. Criar a porta do ranking e a regra do Top 5
-  - status: review
+- [x] 5. Criar a porta do ranking e a regra do Top 5
+  - status: done
   - `RankingEntry`, `RankingRepository`, `RankingException` e `RankingTop5` (listar, registrar, recorde, seriaNovoRecorde, limpar).
   - Rodar a busca do design (`grep` por `System.out`, `Scanner`, `new Random` etc. na `application`) e registrar o resultado nas notas.
   - _Requisitos: R7, R8_
