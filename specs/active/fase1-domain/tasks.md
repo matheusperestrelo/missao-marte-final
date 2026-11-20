@@ -31,8 +31,8 @@
   - _Requisitos: R7_
   - notas: Criados `Perigo` (abstrata, guarda a posição, `colideCom(Posicao)` só aqui), `Asteroide` (parado, tipo `ASTEROIDE`) e `Inimigo` (`mover(Direcao, Mapa)` anda 1 casa e fica parado se o destino sair do `Mapa`; não checa outros elementos). Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `Random`/`System.out`/`instanceof` etc. no `domain` sem resultado; `check.sh` passou.
 
-- [ ] 6. Criar `Missao`
-  - status: review
+- [x] 6. Criar `Missao`
+  - status: done
   - Ocupação, passageiro na posição da nave e embarque (recusado com a nave cheia), desembarque na base, indicadores (a bordo + entregues + restantes = total), mover inimigos com `Supplier<Direcao>`, colisão e `elementos()` na ordem de prioridade do desenho.
   - Rodar a busca do design (`grep` por `Random`, `System.out`, `instanceof` etc. no `domain`) e registrar o resultado nas notas.
   - _Requisitos: R8, R1_
