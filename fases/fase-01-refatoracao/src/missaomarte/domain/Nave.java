@@ -1,7 +1,6 @@
 package missaomarte.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Nave implements ElementoMapa {
@@ -67,6 +66,6 @@ public class Nave implements ElementoMapa {
     }
 
     public List<Passageiro> getABordo() {
-        return Collections.unmodifiableList(aBordo);
+        return List.copyOf(aBordo);
     }
 }
