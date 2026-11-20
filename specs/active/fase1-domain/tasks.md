@@ -8,10 +8,10 @@
   - notas: Criados `.gitignore`, `Direcao`, `Posicao` (record, `ORIGEM`, `mover`) e `Mapa` (`getTamanho`/`getMin`/`getMax`/`contem`). Critérios são de inspeção (sem JUnit na Fase 1), então não há testes automáticos. `check.sh` agora compila a Fase 1 (javac) e passou, com a Fase 0 intacta.
 
 - [ ] 2. Criar `TipoElemento`, `ElementoMapa` e `Base`
-  - status: todo
+  - status: review
   - Símbolos e nomes exatamente como na tabela do design, na ordem da legenda da Fase 0.
   - _Requisitos: R4_
-  - notas:
+  - notas: Criados `TipoElemento` (enum na ordem da legenda, com `simbolo()`/`nome()`), `ElementoMapa` (`posicao()`, `tipo()`, `simbolo()` default) e `Base` (fixa em `Posicao.ORIGEM`, tipo `BASE`). Critérios de R4 são de inspeção (sem JUnit na Fase 1), então não há testes automáticos. `check.sh` passou antes e depois.
 
 - [ ] 3. Criar `Passageiro` abstrata e `Professor`, `Engenheiro`, `Astronauta`
   - status: todo
