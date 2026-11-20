@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-20.** Diferenças do planejado: QA manual adiado pelo usuário para o fim da Fase 1 (roteiro em `reviews/final.md`). Ficam para `fase1-console-infra`: não chamar `jogar` depois do fim nem consultar a sessão antes de `iniciar` (sem guarda na `GameSession`), e o `FileRankingRepository` deve devolver a lista ordenada com no máximo 5 entradas (contrato suposto por `RankingTop5`). Para o tutorial (#7): tamanho 1 no Médio/Difícil trava a criação do cenário e a capacidade da nave muda por dificuldade.
+
 # Requisitos: fase1-application
 
 **Issue:** #5 · **Trilha:** A (núcleo do jogo) · **Fase:** 1 · **Depende de:** 1 (`fase1-domain`)
