@@ -4,7 +4,7 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 1 | fase1-domain | #4 | A | — | em andamento | Cria a pasta da Fase 1 e a camada `domain` (posição, mapa, nave, passageiros, perigos, missão) |
+| 1 | fase1-domain | #4 | A | — | aguardando QA | Cria a pasta da Fase 1 e a camada `domain` (posição, mapa, nave, passageiros, perigos, missão) |
 | 2 | fase1-application | #5 | A | 1 | na fila | `Acao`, `Dificuldade` com parâmetros, `MissaoFactory`, `GameSession` com eventos do turno, regra do Top 5 |
 | 3 | fase1-console-infra | #6 | B | 2 | na fila | Console com as frases da Fase 0, ranking em arquivo JSON, `Main` de composição e `build.sh` |
 
