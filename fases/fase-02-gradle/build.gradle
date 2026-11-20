@@ -16,6 +16,13 @@ tasks.withType(JavaCompile).configureEach {
     options.release = 17
 }
 
+dependencies {
+    // Só dependências de teste: o jogo não tem dependências de execução.
+    testImplementation platform('org.junit:junit-bom:5.10.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
 application {
     mainClass = 'missaomarte.Main'
 }
@@ -25,3 +32,6 @@ run {
     standardInput = System.in
 }
 
+test {
+    useJUnitPlatform()
+}
