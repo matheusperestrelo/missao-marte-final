@@ -1,11 +1,11 @@
 # Tarefas: fase1-domain
 
 - [ ] 1. Criar a pasta da Fase 1 com `Direcao`, `Posicao` e `Mapa`
-  - status: todo
+  - status: review
   - Criar `fases/fase-01-refatoracao/` com `.gitignore` (`out/`, `ranking.json`) e `src/missaomarte/domain/` com `Direcao`, `Posicao` (record) e `Mapa`, conforme o design.
   - Conferir que o `.workflow/check.sh` passa a compilar a Fase 1 e continua passando.
   - _Requisitos: R1, R2, R3_
-  - notas:
+  - notas: Criados `.gitignore`, `Direcao`, `Posicao` (record, `ORIGEM`, `mover`) e `Mapa` (`getTamanho`/`getMin`/`getMax`/`contem`). Critérios são de inspeção (sem JUnit na Fase 1), então não há testes automáticos. `check.sh` agora compila a Fase 1 (javac) e passou, com a Fase 0 intacta.
 
 - [ ] 2. Criar `TipoElemento`, `ElementoMapa` e `Base`
   - status: todo
