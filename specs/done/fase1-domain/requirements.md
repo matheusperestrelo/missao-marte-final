@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-20.** Diferenças do planejado: QA manual adiado pelo usuário para o fim da Fase 1 (roteiro em `reviews/final.md`). Extras sem conflito: `Passageiro.getNome()`, `Nave.getCapacidade()`/`getVidas()` e `Missao.embarcar` recusa passageiro fora do mapa. Ficam para `fase1-application`: missão sem passageiros (`todosEntregues()` devolve `true`) e embarque só por `missao.embarcar(p)` (invariante R8.7). Sugestões de robustez das revisões (tamanho negativo em `Mapa`, `Nave.embarcar(null)`, `Perigo.posicao` protected) ficam em aberto, e a tarefa 4 saiu em dois commits.
+
 # Requisitos: fase1-domain
 
 **Issue:** #4 · **Trilha:** A (núcleo do jogo) · **Fase:** 1 · **Depende de:** — (primeira spec da fila)
