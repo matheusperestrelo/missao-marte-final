@@ -36,4 +36,4 @@
   - Ocupação, passageiro na posição da nave e embarque (recusado com a nave cheia), desembarque na base, indicadores (a bordo + entregues + restantes = total), mover inimigos com `Supplier<Direcao>`, colisão e `elementos()` na ordem de prioridade do desenho.
   - Rodar a busca do design (`grep` por `Random`, `System.out`, `instanceof` etc. no `domain`) e registrar o resultado nas notas.
   - _Requisitos: R8, R1_
-  - notas:
+  - notas: Criada `Missao` com as operações do design (`estaOcupada` exclui a base; `embarcar` também recusa passageiro que não está no mapa; `total` é contado em `adicionarPassageiro`, então a invariante a bordo + entregues + restantes = total vale por construção; `desembarcarNaBase` devolve 0 fora da base ou sem ninguém a bordo; `elementos()` é `List.copyOf` na ordem nave, passageiros, asteroides, inimigos, base). Critérios de inspeção, sem testes automáticos. Busca do design (`grep` por `Random`, `System.out/in`, `Scanner`, `instanceof`, `currentTimeMillis`, `LocalDateTime.now` no `domain`) sem resultado; `check.sh` passou.
