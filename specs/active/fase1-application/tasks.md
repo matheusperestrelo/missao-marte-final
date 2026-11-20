@@ -19,10 +19,10 @@
   - notas: Criados `TipoEvento` (9 tipos), `EventoJogo`, `ResultadoTurno`, `ResultadoPartida` e `ResumoPartida` exatamente como na tabela do design (records/enums, sem lógica). Sem JUnit na Fase 1 e sem critério executável nesta tarefa: R5 e R6.2 só se verificam na `GameSession` (tarefa 4), por inspeção; aqui só os tipos. check.sh passou. As pendências da fase1-domain (embarque só por `missao.embarcar`, missão sem passageiros) são da tarefa 4.
 
 - [ ] 4. Criar `GameSession`
-  - status: todo
+  - status: review
   - `iniciar` e `jogar` seguindo o pseudocódigo do design, com `Random` e `Clock` injetados; duração congelada ao terminar.
   - _Requisitos: R4, R5, R6_
-  - notas:
+  - notas: `GameSession` criada seguindo o pseudocódigo do design (java.time.Clock; duração = (fim − início)/1000 congelada ao terminar, calculada ao vivo enquanto em andamento). Sem JUnit na Fase 1: R4-R6 por inspeção; check.sh passou e o grep de R8.2 na `application` não encontrou nada. Pendências da fase1-domain: o embarque usa só `missao.embarcar(p)` (nunca `nave.embarcar`), mantendo a conta a bordo + entregues + restantes (R6.1); missão sem passageiros não ocorre, pois toda `Dificuldade` tem >= 4 passageiros e a fábrica os cria sempre (sem tratamento extra em `iniciar`). Sugestão da revisão 03-r1 aplicada: `ResultadoTurno` recebe `List.copyOf(eventos)` na `GameSession` (o record não foi alterado). Em `INVALIDA`/`SAIR` a lista é `List.of()`. `jogar` após o fim não é protegido (design: o console nunca chama).
 
 - [ ] 5. Criar a porta do ranking e a regra do Top 5
   - status: todo
