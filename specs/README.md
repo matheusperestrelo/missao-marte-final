@@ -4,7 +4,7 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 3 | fase1-console-infra | #6 | B | 2 | na fila | Console com as frases da Fase 0, ranking em arquivo JSON, `Main` de composição e `build.sh` |
+| 3 | fase1-console-infra | #6 | B | 2 | em andamento | Console com as frases da Fase 0, ranking em arquivo JSON, `Main` de composição e `build.sh` |
 
 ## Backlog (planned/)
 
