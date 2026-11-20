@@ -20,10 +20,10 @@
   - notas: Criados `Passageiro` (abstrata, implementa `ElementoMapa`; `nome`, `posicao`, `pontuacao()` e `tipo()` abstratos, sem campo de tipo em texto) e `Professor`/`Engenheiro`/`Astronauta` (10/15/20, tipo próprio). Construtor `(String nome, Posicao posicao)`; getter `getNome()`. Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `instanceof`/`Random`/`System.out` no `domain` sem resultado; `check.sh` passou.
 
 - [ ] 4. Criar `Nave`
-  - status: todo
+  - status: review
   - Começa em (0,0), 3 vidas, capacidade do construtor; mover com limite do `Mapa`; embarcar, nave cheia, perder vida e desembarcar todos.
   - _Requisitos: R6_
-  - notas:
+  - notas: Criada `Nave` (implementa `ElementoMapa`, tipo `NAVE`; começa em `ORIGEM`, 3 vidas; `mover` ignora destino fora do `Mapa`; `embarcar` devolve false se cheia; `perderVida` não passa de 0; `desembarcarTodos` devolve e esvazia; `getABordo` é cópia não modificável). Extras: `getCapacidade()`, `getVidas()`. Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `Random`/`System.out`/`instanceof` no `domain` sem resultado; `check.sh` passou.
 
 - [ ] 5. Criar `Perigo`, `Asteroide` e `Inimigo`
   - status: todo
