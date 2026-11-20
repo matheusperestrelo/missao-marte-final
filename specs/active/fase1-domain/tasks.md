@@ -26,10 +26,10 @@
   - notas: Criada `Nave` (implementa `ElementoMapa`, tipo `NAVE`; começa em `ORIGEM`, 3 vidas; `mover` ignora destino fora do `Mapa`; `embarcar` devolve false se cheia; `perderVida` não passa de 0; `desembarcarTodos` devolve e esvazia; `getABordo` é cópia não modificável). Extras: `getCapacidade()`, `getVidas()`. Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `Random`/`System.out`/`instanceof` no `domain` sem resultado; `check.sh` passou.
 
 - [ ] 5. Criar `Perigo`, `Asteroide` e `Inimigo`
-  - status: todo
+  - status: review
   - `colideCom` só em `Perigo`; o `Inimigo` move com a `Direcao` recebida, respeitando o `Mapa`.
   - _Requisitos: R7_
-  - notas:
+  - notas: Criados `Perigo` (abstrata, guarda a posição, `colideCom(Posicao)` só aqui), `Asteroide` (parado, tipo `ASTEROIDE`) e `Inimigo` (`mover(Direcao, Mapa)` anda 1 casa e fica parado se o destino sair do `Mapa`; não checa outros elementos). Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `Random`/`System.out`/`instanceof` etc. no `domain` sem resultado; `check.sh` passou.
 
 - [ ] 6. Criar `Missao`
   - status: todo
