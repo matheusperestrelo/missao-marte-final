@@ -7,10 +7,10 @@
   - notas: `Acao` (deTexto pelo primeiro caractere, direcao(), ehMovimento()) e `Dificuldade` (parâmetros da tabela R2.1, deString/toString como na Fase 0) criados. Sem JUnit na Fase 1 (verificação por inspeção): conferi R1.1-R1.4 e R2.1-R2.4 com um programa descartável fora do repositório. Pendências da fase1-domain (missão sem passageiros, embarcar só por `missao.embarcar`) não pertencem a esta tarefa; ficam para as tarefas 2 e 4.
 
 - [ ] 2. Criar `MissaoFactory`
-  - status: todo
+  - status: review
   - Um único sorteio de célula livre, na sequência de sorteios da Fase 0; nomes e tipos dos passageiros por índice.
   - _Requisitos: R3_
-  - notas:
+  - notas: `MissaoFactory(Random)` com `criar(Dificuldade, int)` e um único `sortearCelulaLivre` (x e depois y, rejeita (0,0) e `estaOcupada`), ordem passageiros, asteroides, inimigos como na Fase 0. Sem JUnit na Fase 1: R3.1-R3.5 por inspeção; check.sh passou (compilação e camadas). Não consegui rodar programa descartável de verificação nesta sessão. Tamanho 1 no Médio/Difícil continua em laço infinito (R3.5, comentado no código). Pendência da fase1-domain "missão sem passageiros": toda `Dificuldade` tem >= 4 passageiros, então a fábrica nunca cria missão vazia; `todosEntregues()` com total 0 só seria possível fora da fábrica. O embarque só por `missao.embarcar` fica para a tarefa 4 (GameSession).
 
 - [ ] 3. Criar os tipos do resultado do turno
   - status: todo
