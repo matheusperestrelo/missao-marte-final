@@ -14,10 +14,10 @@
   - notas: Criados `TipoElemento` (enum na ordem da legenda, com `simbolo()`/`nome()`), `ElementoMapa` (`posicao()`, `tipo()`, `simbolo()` default) e `Base` (fixa em `Posicao.ORIGEM`, tipo `BASE`). Critérios de R4 são de inspeção (sem JUnit na Fase 1), então não há testes automáticos. `check.sh` passou antes e depois.
 
 - [ ] 3. Criar `Passageiro` abstrata e `Professor`, `Engenheiro`, `Astronauta`
-  - status: todo
+  - status: review
   - Sem campo de tipo em texto; pontuação 10/15/20.
   - _Requisitos: R5, R4_
-  - notas:
+  - notas: Criados `Passageiro` (abstrata, implementa `ElementoMapa`; `nome`, `posicao`, `pontuacao()` e `tipo()` abstratos, sem campo de tipo em texto) e `Professor`/`Engenheiro`/`Astronauta` (10/15/20, tipo próprio). Construtor `(String nome, Posicao posicao)`; getter `getNome()`. Critérios de inspeção (sem JUnit na Fase 1), sem testes automáticos. `grep` por `instanceof`/`Random`/`System.out` no `domain` sem resultado; `check.sh` passou.
 
 - [ ] 4. Criar `Nave`
   - status: todo
