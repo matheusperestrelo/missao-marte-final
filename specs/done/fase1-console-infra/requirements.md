@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-20.** Diferenças do planejado: por decisão do usuário, os commits saíram todos no fim da spec (um commit de código para as tarefas 1 a 3, revisões feitas sobre a working tree), sem desvios do `design.md`. Ficaram como sugestões não bloqueantes: citar no README os pontos *c* e *d* da Fase 0, levar a guarda `recorde > 0` do console para `RankingTop5`, comentar o `entrou = true` no `catch` do `JogoConsole`, tratar o `default` de `MensagensConsole` e o separador duplicado.
+
 # Requisitos: fase1-console-infra
 
 **Issue:** #6 · **Trilha:** B (console e interfaces) · **Fase:** 1 · **Depende de:** 2 (`fase1-application`)
