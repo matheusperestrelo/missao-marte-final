@@ -6,8 +6,8 @@
   - _Requisitos: R1, R2_
   - notas: (Revisor, regularização) implementada fora do workflow no PR #33 (commit 27e4b67), sem passar por `review`; revisada em `reviews/01-r1.md`, sem alterar código. Evidência do Revisor (2026-11-21) numa cópia temporária no scratchpad, com o Gradle 9.7.1 do cache e o JDK 25.0.2, porque o Wrapper 8.7 não roda no JDK 25: `gradle clean build --offline` → BUILD SUCCESSFUL, 75 testes, 0 falhas (PosicaoTest 2, MapaTest 2, NaveTest 4); relatório em `build/reports/tests/test/index.html`; `runtimeClasspath` sem dependências; `comparar-hash.sh` → 33 idênticos, exit 0. O `src/test/java/.gitkeep` nunca foi versionado (nada a remover). Pendente para o QA: `./gradlew clean build` e `check.sh` com JDK 17/Wrapper 8.7.
 
-- [ ] 2. Testar `Acao` e `Dificuldade`
-  - status: review
+- [x] 2. Testar `Acao` e `Dificuldade`
+  - status: done
   - `AcaoTest` e `DificuldadeTest`, com testes parametrizados (`@ParameterizedTest`) onde houver tabela.
   - _Requisitos: R3_
   - notas: (Revisor, regularização) implementada fora do workflow no PR #33 (commit 27e4b67), sem passar por `review`; revisada em `reviews/02-r1.md`, sem alterar código. Evidência do Revisor (mesma cópia temporária, Gradle 9.7.1/JDK 25): AcaoTest 20 e DificuldadeTest 15 passam. Bloqueante: `DificuldadeTest.java:29` não testa espaços, porque o `@CsvSource` remove os espaços de `  FACIL  ` sem aspas (o relatório mostra `"FACIL" vira FACIL`). Numa segunda cópia temporária, tirar o `trim()` de `Dificuldade.deString` não quebra nenhum teste. Pendente para o QA: JDK 17/Wrapper 8.7.
