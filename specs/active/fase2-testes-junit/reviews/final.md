@@ -1,34 +1,44 @@
 # Verificação final — fase2-testes-junit
 
-**Veredito:** PENDENCIAS (só por ambiente: o `check.sh` não executou a etapa Gradle porque falta o JDK 17; não há lacuna de cobertura nem bloqueante de código)
-**Branch:** feat/issue-8-fase2-gradle (PR #33, junto com a #8 e a #10)
-**Commits da spec:** 2 de implementação (27e4b67, testes da #9; a575d23, rodada 2 da tarefa 2) e 3 de revisão (1f64def, 4ba197c, 91f4645). O README da fase veio no 074a200 (#10).
+> Nova verificação (2026-11-21). Ela substitui a anterior (e50bfab), que
+> deu PENDENCIAS só porque a máquina não tinha JDK 17 e a etapa Gradle do
+> `check.sh` não rodava. O JDK 17 foi instalado e o `check.sh` passou
+> inteiro. O usuário executou o roteiro de QA e mandou seguir.
 
-Regularização: a spec foi implementada fora do workflow no PR #33. As
+**Veredito:** APROVADA
+**Branch:** feat/issue-8-fase2-gradle (PR #33, junto com a #8 e a #10)
+**Commits da spec:** 2 de implementação (27e4b67, testes da #9; a575d23, rodada 2 da tarefa 2) e 4 de revisão (1f64def, 4ba197c, 91f4645, e50bfab). O README da fase veio no 074a200 (#10).
+
+Regularização: a spec foi implementada fora do workflow, no PR #33. As
 tarefas 1 a 6 foram revisadas a partir dos commits existentes. A tarefa 2
 voltou uma vez (`reviews/02-r1.md`, caso de espaços do R3.3) e foi
 aprovada na rodada 2 (`reviews/02-r2.md`). As demais foram aprovadas na
-rodada 1. Ambiente: macOS, só JDK 25.0.2, sem JDK 17.
+rodada 1.
 
 ## Como a evidência foi obtida
 
-Exportei `fases/fase-02-gradle` no commit a575d23 para uma cópia
-temporária no scratchpad. O código não mudou depois desse commit (só
-`specs/`). Rodei o Gradle 9.7.1 do cache, porque o Wrapper 8.7 não roda no
-JDK 25:
+No repositório, em HEAD 033f25c, com OpenJDK 17.0.21.1 (Homebrew) e
+`JAVA_HOME="$(brew --prefix openjdk@17)/libexec/openjdk.jdk/Contents/Home"`:
 
-- `gradle clean build --offline` → exit 0, **75 testes, 0 falhas, 0
-  ignorados**, 0.896s no `build/reports/tests/test/index.html`.
-- `gradle dependencies --configuration runtimeClasspath` → `No dependencies`.
-- `bash fases/fase-02-gradle/scripts/comparar-hash.sh` (no repositório,
-  só leitura) → "33 arquivos comparados: todos idênticos", exit 0.
+- `.workflow/check.sh` → exit 0, "check.sh: tudo passou". A etapa
+  `fases/fase-02-gradle: gradlew clean build` deu `BUILD SUCCESSFUL`.
+- `./gradlew --version` → Gradle 8.7, JVM 17.0.21.1.
+- `build/test-results/test/*.xml` → **75 testes, 0 falhas, 0 erros, 0
+  ignorados**: AcaoTest 20, DificuldadeTest 15, GameSessionTest 16,
+  MissaoFactoryTest 6, RankingTop5Test 6, MapaTest 2, NaveTest 4,
+  PosicaoTest 2, FileRankingRepositoryTest 4.
+- `./gradlew dependencies --configuration runtimeClasspath` → `No dependencies`.
+- `bash scripts/comparar-hash.sh` → "33 arquivos comparados: todos
+  idênticos", exit 0.
+- `git status --short` limpo depois do build: nenhum `ranking.json` nem
+  outro artefato de teste apareceu.
 
 ## Cobertura
 
 | Requisito | Critério | Teste(s) / verificação | Situação |
 |---|---|---|---|
 | R1 | 1 | inspeção de `build.gradle:20-23,35-37` (BOM 5.10.3, `junit-jupiter` sem versão, launcher em `testRuntimeOnly`, `useJUnitPlatform()`) | coberto |
-| R1 | 2 | `gradle clean build` na cópia, 75/75 | coberto com Gradle 9.7.1/JDK 25; **Wrapper 8.7/JDK 17 pendente de QA** |
+| R1 | 2 | `check.sh`, etapa `gradlew clean build` (Wrapper 8.7, JDK 17) → `BUILD SUCCESSFUL`; `build/test-results`: 75 testes, 0 falhas, 0 erros, 0 ignorados | coberto |
 | R1 | 3 | `runtimeClasspath` → `No dependencies` | coberto |
 | R1 | 4 | `comparar-hash.sh` → 33 idênticos, exit 0 | coberto |
 | R1 | 5 | inspeção de `src/test/java`: sem `System.in`, todo `Random` com semente, relógio só `RelogioControlado`/`Clock.fixed`, a única gravação em disco é feita em `@TempDir` (`FileRankingRepositoryTest`) | coberto |
@@ -73,18 +83,17 @@ Lacunas: nenhuma.
 
 ## check.sh
 
-Falhou em `fases/fase-02-gradle: gradlew clean build`, porque o JDK 17
-não foi encontrado, então a etapa não chegou a executar o Gradle. As
-demais etapas passaram: fase 0 imutável, `fases/fase-01-refatoracao:
-javac`, regras de camadas das Fases 1 e 2. O mesmo build passou na cópia
-temporária (acima), mas isso não substitui o gate. A pendência é resolvida
-pelo passo 2 do QA.
+Passou (exit 0, "check.sh: tudo passou"), com JDK 17:
+
+- fase 0 imutavel: ok
+- `fases/fase-01-refatoracao`: javac ok, regras de camadas ok
+- `fases/fase-02-gradle`: `gradlew clean build` ok (`BUILD SUCCESSFUL`),
+  regras de camadas ok
 
 ## Pendências
 
-- Todas as tarefas (notas e revisões): `./gradlew clean build` e
-  `check.sh` com JDK 17/Wrapper 8.7 não puderam ser reproduzidos aqui.
-  Rodá-los no QA é obrigatório (passos 1 a 3).
+Nenhuma bloqueia. Ficam registradas:
+
 - Revisões 01-r1, 02-r1/02-r2, 04-r1 e 06-r1: testes extras sem ID de
   critério no nome (`NaveTest.perderVidaNaoFicaNegativa`,
   `AcaoTest.direcaoDasAcoes`, `GameSessionTest.inimigoAndaNaDirecaoSorteada`,
@@ -109,16 +118,15 @@ pelo passo 2 do QA.
 
 ## Roteiro de QA
 
-Pré-requisito: JDK 17 (`brew install openjdk@17`). Em cada terminal, rode
-`export JAVA_HOME=$(/usr/libexec/java_home -v 17)` (ou
-`export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`).
+O usuário já executou este roteiro e mandou seguir. Ele fica aqui para
+referência. Antes, em cada terminal:
+`export JAVA_HOME="$(brew --prefix openjdk@17)/libexec/openjdk.jdk/Contents/Home"`.
 
 1. `cd fases/fase-02-gradle && ./gradlew --version` → **esperado:**
    "Gradle 8.7" e "JVM: 17.x" (R1.2).
 2. Na raiz do repositório, `.workflow/check.sh` → **esperado:** todas as
    etapas `ok`, inclusive `fases/fase-02-gradle: gradlew clean build`, e a
-   linha final de sucesso (R1.2). Este é o passo que resolve a pendência
-   do veredito.
+   linha final `check.sh: tudo passou` (R1.2).
 3. `cd fases/fase-02-gradle && ./gradlew clean build` → **esperado:**
    `BUILD SUCCESSFUL`, sem falhas de teste (R1.2).
 4. Abra `fases/fase-02-gradle/build/reports/tests/test/index.html` no
@@ -149,11 +157,9 @@ Pré-requisito: JDK 17 (`brew install openjdk@17`). Em cada terminal, rode
 
 ## Próximos passos
 
-- Nenhuma tarefa nova para o Planejador: não há lacuna de cobertura nem
-  bloqueante de código.
-- Se os passos 1 a 3 do QA passarem com JDK 17 (principalmente o
-  `check.sh` completo no passo 2), a spec fica em condição equivalente a
-  APROVADA e segue para merge e conclusão (active/ → done/).
+- QA feito pelo usuário. Falta o merge e a conclusão da spec (active/ →
+  done/), que ficam com o orquestrador.
+- Nenhuma tarefa nova para o Planejador.
 - As sugestões acumuladas (IDs nos testes extras, caso `""` em R5.1, borda
-  negativa em R2.4) ficam a critério do usuário, como `ajuste-` futuro ou
-  ignoradas.
+  negativa em R2.4) ficam a critério do usuário: viram um `ajuste-` futuro
+  ou são ignoradas.
