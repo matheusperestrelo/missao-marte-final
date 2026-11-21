@@ -26,7 +26,7 @@ class DificuldadeTest {
 
     @ParameterizedTest(name = "\"{0}\" vira {1}")
     @CsvSource(value = {
-            "facil|FACIL", "fácil|FACIL", "  FACIL  |FACIL", "Fácil|FACIL",
+            "facil|FACIL", "fácil|FACIL", "'  FACIL  '|FACIL", "Fácil|FACIL",
             "dificil|DIFICIL", "difícil|DIFICIL", "DIFÍCIL|DIFICIL",
             "medio|MEDIO", "qualquer|MEDIO", "''|MEDIO"
     }, delimiter = '|')
