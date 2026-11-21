@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-21.** Diferenças do planejado: implementada fora do workflow no PR #33 (junto com #9 e #10) e regularizada depois por revisão; `src/test/java/.gitkeep` não foi criado (a pasta é versionada pelos testes da #9); `comparar-hash.sh` imprime o hash cortado em 12 caracteres; R3.5 (gravação do `ranking.json` pelo jogo) coberto por `FileRankingRepositoryTest`, sem partida manual até a vitória.
+
 # Requisitos: fase2-gradle
 
 **Issue:** #8 · **Trilha:** C · **Fase:** 2 · **Depende de:** 3 (`fase1-console-infra`)
