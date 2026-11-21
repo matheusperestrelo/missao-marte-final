@@ -4,8 +4,8 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 4 | fase2-gradle | #8 | C | 3 | em andamento | Fase 1 movida para o layout Gradle (Wrapper 8.7, plugin `application`, Java 17), fontes idênticos conferidos por `comparar-hash.sh` |
-| 5 | fase2-testes-junit | #9 | C | 4 | em andamento | JUnit 5 (BOM 5.10.x) e testes de domínio, ação, dificuldade, fábrica, sessão e ranking, sem alterar `src/main/java` |
+| 4 | fase2-gradle | #8 | C | 3 | aguardando QA | Fase 1 movida para o layout Gradle (Wrapper 8.7, plugin `application`, Java 17), fontes idênticos conferidos por `comparar-hash.sh` |
+| 5 | fase2-testes-junit | #9 | C | 4 | aguardando QA | JUnit 5 (BOM 5.10.x) e testes de domínio, ação, dificuldade, fábrica, sessão e ranking, sem alterar `src/main/java` |
 
 ## Backlog (planned/)
 
