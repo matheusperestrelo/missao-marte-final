@@ -31,6 +31,16 @@ javac -encoding UTF-8 -d out src/*.java
 java -cp out Main
 ```
 
+### Fase 2 (Gradle)
+
+```bash
+cd fases/fase-02-gradle
+./gradlew clean build          # compila e roda os 75 testes
+./gradlew run --console=plain  # joga no terminal
+```
+
+Precisa de JDK 17 (o Gradle 8.7 não roda em JDKs mais novos). Detalhes em [fases/fase-02-gradle/README.md](fases/fase-02-gradle/README.md).
+
 Controles: `w`, `a`, `s`, `d` movem a nave, `c` embarca o passageiro e `q` aborta a missão.
 
 O arquivo `ranking.json` é criado na pasta de onde o jogo é executado e não é versionado.

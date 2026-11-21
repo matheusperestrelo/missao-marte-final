@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-21.** Diferenças do planejado: implementada fora do workflow no PR #33 e regularizada depois por revisão; a tarefa 2 precisou de rodada 2 (o caso com espaços do R3.3 no `DificuldadeTest` não era testado de fato); R5.6 é provado dentro de `r5_5_*`, com o ID só no `@DisplayName`; há testes extras sem ID de critério.
+
 # Requisitos: fase2-testes-junit
 
 **Issue:** #9 · **Trilha:** C · **Fase:** 2 · **Depende de:** 4 (`fase2-gradle`)
