@@ -125,7 +125,7 @@ Regras de dependência: `domain` não importa nenhuma outra camada; `application
 4. A ocupação de células fica na `Missao`; o sorteio de células livres, na `MissaoFactory`.
 5. A `GameSession` recebe uma `Acao` e devolve o resultado do turno; o `console` o traduz nas mesmas frases da Fase 0.
 6. O `Random` é injetado por construtor na `MissaoFactory` e na `GameSession`.
-7. Os pontos de atenção da análise da Fase 0 são preservados (a `Acao` continua usando só o primeiro caractere do comando; o JSON continua manual).
+7. Os pontos de atenção da análise da Fase 0 são preservados, exceto as mudanças exigidas pela Fase 1 (desembarque na base, vitória por passageiros entregues, indicadores a bordo + entregues + restantes = total, capacidade coerente) (a `Acao` continua usando só o primeiro caractere do comando; o JSON continua manual).
 
 Fora de escopo: eventos com ouvinte entre sessão e console (Fase 3), configuração de dificuldade em arquivo, `Mapa` controlando ocupação ou sorteio.
 

@@ -53,7 +53,7 @@ O `ranking.json` é criado na pasta de onde o jogo roda. Ele e o `out/` ficam fo
 - [ ] Ranking recarregado após cada partida; limpar pede confirmação (`s`/`sim`) e apaga o arquivo; `n` cancela.
 - [ ] `q` aborta a partida; opção 4 encerra; Ctrl+D encerra no menu e na partida.
 
-## 5. Pontos de atenção (decisão: preservar e registrar)
+## 5. Pontos de atenção (decisão: preservar e registrar, exceto as mudanças exigidas pela Fase 1 (desembarque na base, vitória por passageiros entregues, indicadores a bordo + entregues + restantes = total, capacidade coerente))
 
 Quem mudar algum destes na Fase 1 documenta como mudança intencional. "Confirmado" = verificado rodando o jogo com entrada automatizada; os demais vêm do código.
 
