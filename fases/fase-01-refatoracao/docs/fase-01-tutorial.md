@@ -68,11 +68,11 @@ Mapeamento a partir da tabela da seção 1 de `docs/fase-00-arquitetura.md`. "On
 - **Limite:** `JogoConsole` ainda reúne menu, leitura, laço da partida e o registro no ranking (`exibirEstatisticasERegistrar`). É coeso por ser "a tela", mas é a classe mais próxima de acumular responsabilidades de novo.
 
 ### O: aberto para extensão, fechado para modificação
-- **Aplicação:** uma nova dificuldade é uma constante nova no enum `Dificuldade`, com os cinco parâmetros no construtor; a `MissaoFactory` só lê os acessores (`passageiros()`, `asteroides()`, `inimigos()`, `capacidadeNave()`). Um novo perigo ou passageiro é uma subclasse de `Perigo` ou `Passageiro`; `Missao.haColisao` e `DesenhoMapa.simboloEm` trabalham com `ElementoMapa` e não mudam.
-- **Limite:** o `switch` de `Acao.deTexto`, o de `MissaoFactory.criarPassageiro` (por `indice % 5`) e o de `MensagensConsole.traduzir` continuam fechados por modificação. Um tipo novo de elemento também exige editar `TipoElemento` (seção 7).
+- **Aplicação:** uma nova dificuldade é uma constante nova no enum `Dificuldade`, com os cinco parâmetros no construtor; a `MissaoFactory` só lê os acessores (`passageiros()`, `asteroides()`, `inimigos()`, `capacidadeNave()`). `DesenhoMapa.simboloEm` e `Missao.elementos()`/`estaOcupada` trabalham com `ElementoMapa`, e um passageiro novo é uma subclasse de `Passageiro` que entra por `Missao.adicionarPassageiro`, sem mudar essas classes.
+- **Limite:** o `switch` de `Acao.deTexto`, o de `MissaoFactory.criarPassageiro` (por `indice % 5`) e o de `MensagensConsole.traduzir` continuam fechados por modificação. Um tipo novo de elemento também exige editar `TipoElemento` (seção 7). Um perigo novo exige editar `Missao` (lista própria, método `adicionar...`, `haColisao` e `elementos`), porque a `Missao` separa `asteroides` e `inimigos` para mover só os inimigos, além de `MissaoFactory` e `Dificuldade`.
 
 ### L: substituição de Liskov
-- **Aplicação:** `Professor`, `Engenheiro` e `Astronauta` entram onde há um `Passageiro`: `Nave.embarcar(Passageiro)` e `Missao.embarcar(Passageiro)` não distinguem o subtipo, e cada subclasse só implementa `pontuacao()` e `tipo()`. `Asteroide` e `Inimigo` são intercambiáveis para `Perigo.colideCom`, usado por `Missao.haColisao`.
+- **Aplicação:** `Professor`, `Engenheiro` e `Astronauta` entram onde há um `Passageiro`: `Nave.embarcar(Passageiro)` e `Missao.embarcar(Passageiro)` não distinguem o subtipo, e cada subclasse só implementa `pontuacao()` e `tipo()`. `Asteroide` e `Inimigo` herdam o mesmo `colideCom` de `Perigo`, e com isso a duplicação da Fase 0 sumiu (`Missao.haColisao` o chama nas listas concretas).
 - **Limite:** `Inimigo` tem `mover`, que `Asteroide` não tem. Quem recebe um `Perigo` não pode mover; por isso `Missao` guarda as duas listas separadas (`asteroides` e `inimigos`).
 
 ### I: segregação de interfaces
@@ -262,12 +262,12 @@ Quatro mudanças intencionais, listadas no [README da fase](../README.md). O res
 
 ## 9. Roteiro de testes manuais
 
-Execute em `fases/fase-01-refatoracao`, com `./build.sh run`. Apague o `ranking.json` local antes, para começar sem registros. A coluna "Resultado" está **em branco de propósito**: quem executa o roteiro a preenche (OK, falhou, observação). O QA manual das specs da Fase 1 foi adiado para este ponto.
+Execute em `fases/fase-01-refatoracao`, com `./build.sh run`. Apague o `ranking.json` local antes, para começar sem registros. Depois de cada ação, o menu só aparece depois da próxima linha lida (ponto *a*). A coluna "Resultado" está **em branco de propósito**: quem executa o roteiro a preenche (OK, falhou, observação). O QA manual das specs da Fase 1 foi adiado para este ponto.
 
 | # | Caso | Passos | Esperado | Resultado |
 | --- | --- | --- | --- | --- |
 | 1 | Menu: opção válida | Abrir o jogo e digitar `2` com o ranking vazio | Boas-vindas "MISSÃO MARTE UNIFOR - VERSÃO 10.0", menu de 4 opções e " - Nenhum registro encontrado. Seja o primeiro a jogar!" | |
-| 2 | Menu: opção inválida | Digitar `9` no menu | "Opção inválida. Tente novamente." e o menu de novo | |
+| 2 | Menu: opção inválida | Digitar `9` no menu | "Opção inválida. Tente novamente."; o menu volta depois da próxima linha digitada (ponto *a*) | |
 | 3 | Dificuldade Fácil | Opção `1`, nome vazio, `facil`, tamanho `abc`, Enter | "Entrada inválida, usando tamanho padrão (5).", piloto "Piloto Anônimo" e `Pontos: 30 ... A bordo: 0/4 ... Entregues: 0/4 ... Restantes: 4` | |
 | 4 | Dificuldade Média | Nova missão com `medio` | `Pontos: 20` e `A bordo: 0/3 ... Restantes: 5` | |
 | 5 | Dificuldade Difícil | Nova missão com `dificil` | `Pontos: 45` e `A bordo: 0/2 ... Restantes: 5` | |
@@ -284,6 +284,6 @@ Execute em `fases/fase-01-refatoracao`, com `./build.sh run`. Apague o `ranking.
 | 16 | Limpar ranking | Opção `3` com `n`; depois opção `3` com `s` | "Operação cancelada." e depois "Ranking resetado com sucesso!", com `ranking.json` apagado | |
 | 17 | Sair com `Q` | `q` durante a partida | "Missão abortada pelo piloto." e volta ao menu | |
 | 18 | Opção de sair | Opção `4` no menu | "Obrigado por jogar a Missão Marte Unifor!" e o programa encerra | |
-| 19 | Fim da entrada (Ctrl+D) | Ctrl+D no menu, antes de decolar e durante a partida | "Entrada encerrada. Obrigado por jogar!", "Entrada encerrada. Missão não iniciada." e "Entrada encerrada. Missão abortada." | |
+| 19 | Fim da entrada (Ctrl+D) | Três execuções separadas, pois o primeiro Ctrl+D fecha a entrada: Ctrl+D no menu; Ctrl+D antes de decolar; Ctrl+D durante a partida | "Entrada encerrada. Obrigado por jogar!", "Entrada encerrada. Missão não iniciada." e "Entrada encerrada. Missão abortada." (na terceira, ao voltar ao menu, também "Entrada encerrada. Obrigado por jogar!") | |
 | 20 | Comandos inválidos | `z` e linha vazia durante a partida | "Comando inválido." para `z`; a linha vazia só pede novo comando | |
 | 21 | Compatibilidade do ranking | Vencer na Fase 0 e abrir o ranking na Fase 1, na mesma pasta; depois o inverso | Cada fase lê o `ranking.json` gravado pela outra | |
