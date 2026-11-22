@@ -5,6 +5,11 @@
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
 | 7 | ajuste-fase1-tutorial | #7 | — | 6 | na fila | `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`: SOLID, GRASP, padrões, diagramas, limitações e roteiro manual (só documentação) |
+| 8 | fase3-estrutura-libgdx | #14 | C | 5 | na fila | Fase 3 multi-módulo (`core` + `lwjgl3`, libGDX 1.12.1): regras e testes da Fase 2 em `core` (sem console), `Game`, `TelaBase` e janela 800×600 abrindo |
+| 9 | fase3-ranking-service | #15 | A | 8 | na fila | `application.ranking` com `RankingService` Top 10 (só vitória, > 0, lista cheia só aceita maior que o 10º); remove o `RankingTop5` e migra os testes |
+| 10 | fase3-telas-menu | #14 | C | 8, 9 | na fila | Menu (1 Jogar, 2 Ranking, 3 Limpar com confirmação, 4 Sair), Nova partida (nome até 20, dificuldade por setas, mapa fixo 11×11) e Ranking Top 10 com resumo |
+| 11 | fase3-partida | #16 | B | 8, 9, 10 | na fila | Partida na janela: tecla → `Acao` (só `E` embarca), mapa 11×11 com `MapaGeometria`, painel e mensagens, fim com `Enter` e registro único no Top 10 |
+| 12 | ajuste-fase3-tutorial | a criar | — | 10, 11 | na fila | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
 
 ## Backlog (planned/)
 
@@ -13,7 +18,6 @@ aberto. Cada briefing vira specs em `active/` quando a fase for planejada.
 
 | Spec | Resumo |
 |---|---|
-| briefing-fase3 | libGDX: specs `fase3-estrutura-libgdx` (C), `fase3-ranking-service` (A) e `fase3-telas` (B) |
 | briefing-fase4 | Interface gráfica: specs `fase4-assets-recursos` (A) e `fase4-interface-grafica` (B) |
 | briefing-fase5 | Servidor e cliente online: specs `fase5-servidor-usuarios` (C), `fase5-servidor-partidas-ranking` (C), `fase5-cliente-rede` (A) e `fase5-cliente-telas-online` (B) |
 | briefing-fase6 | Android: specs `fase6-android-build` (C), `fase6-toque` (B) e `fase6-config-servidor` (A) |

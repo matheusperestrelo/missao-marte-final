@@ -16,8 +16,12 @@ movimento suave, sem mudar as regras. Pasta:
 
 | Ordem prevista | Spec | Issue | Trilha | Depende de |
 |---|---|---|---|---|
-| 10 | `fase4-assets-recursos` | a criar | A | 8 (`fase3-telas`) |
+| 10 | `fase4-assets-recursos` | a criar | A | 11 (`fase3-partida`) |
 | 11 | `fase4-interface-grafica` | a criar | B | 10 |
+
+> As ordens previstas ficaram defasadas: a Fase 3 entrou na fila como 8 a 12
+> (`fase3-estrutura-libgdx`, `fase3-ranking-service`, `fase3-telas-menu`,
+> `fase3-partida`, `ajuste-fase3-tutorial`). Recalcular ao planejar esta fase.
 
 **Issues a criar:** uma "[Fase 4] ..." por spec, mais a de documentação
 (tutorial), que fica sem spec.
