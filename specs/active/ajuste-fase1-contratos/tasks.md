@@ -9,7 +9,7 @@ descreve o código **como ele está** em `fases/fase-01-refatoracao/src/missaoma
 A parte da Fase 5 é uma **proposta a combinar**, não decisão.
 
 - [ ] 1. Escrever `docs/contratos.md` com os contratos da Fase 1 e a proposta da Fase 5
-  - status: todo
+  - status: review
   - Não alterar nenhum arquivo fora de `docs/contratos.md`: nada de código,
     testes, `fases/` ou outros docs. O `check.sh` deve continuar passando.
   - Conferir cada assinatura no código antes de escrever; se algo da lista
@@ -66,4 +66,4 @@ A parte da Fase 5 é uma **proposta a combinar**, não decisão.
     integrantes e revisão do PR por outro integrante. Deixar no fim do
     documento uma seção "Aprovação" com os três nomes em aberto.
   - _Requisitos: nenhum (ajuste)_
-  - notas:
+  - notas: Criado docs/contratos.md (seções 1-8 + Aprovação), conferido contra o código da Fase 1. Divergência além do plano, registrada na seção 6: FileRankingRepository.carregar() ordena mas não limita a 5 (o limite vem de RankingTop5.registrar). Seções 7 e 8 marcadas como proposta. Sem teste (ajuste só de documentação). Aprovação dos integrantes fica em aberto.
