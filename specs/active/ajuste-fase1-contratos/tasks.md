@@ -8,8 +8,8 @@ descreve o código **como ele está** em `fases/fase-01-refatoracao/src/missaoma
 (fonte de verdade; idêntico ao de `fases/fase-02-gradle/src/main/java/`).
 A parte da Fase 5 é uma **proposta a combinar**, não decisão.
 
-- [ ] 1. Escrever `docs/contratos.md` com os contratos da Fase 1 e a proposta da Fase 5
-  - status: review
+- [x] 1. Escrever `docs/contratos.md` com os contratos da Fase 1 e a proposta da Fase 5
+  - status: done
   - Não alterar nenhum arquivo fora de `docs/contratos.md`: nada de código,
     testes, `fases/` ou outros docs. O `check.sh` deve continuar passando.
   - Conferir cada assinatura no código antes de escrever; se algo da lista
