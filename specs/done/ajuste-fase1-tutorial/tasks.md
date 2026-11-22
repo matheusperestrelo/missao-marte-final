@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-22.** Diferenças do planejado: o caso 1 do roteiro usa "digitar 2" em vez de "Enter" (o menu só aparece depois da primeira linha lida); a branch usada foi `chore/fase1-tutorial`, não `chore/issue-7-fase1-tutorial`. Fica em aberto a sugestão da revisão 01-r2: no caso 19 (`fase-01-tutorial.md:287`), "Obrigado por jogar!" também aparece na segunda execução, não só na terceira.
+
 # Tarefas: ajuste-fase1-tutorial
 
 **Issue:** #7 · **Fase:** 1 · **Depende de:** 6 (`ajuste-fase1-contratos`) · **Branch:** `chore/issue-7-fase1-tutorial`
