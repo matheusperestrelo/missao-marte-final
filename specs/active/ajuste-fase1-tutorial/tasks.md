@@ -10,7 +10,7 @@ partida: `docs/analise-inicial.md`, `docs/fase-00-arquitetura.md`, o
 `specs/done/fase1-*`.
 
 - [ ] 1. Escrever `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`
-  - status: todo
+  - status: review
   - Não alterar nenhum arquivo fora do tutorial: nada em
     `fases/fase-01-refatoracao/src/`, `fases/fase-00-console/`,
     `fases/fase-02-gradle/` ou testes. O `check.sh` deve continuar passando.
@@ -54,4 +54,4 @@ partida: `docs/analise-inicial.md`, `docs/fase-00-arquitetura.md`, o
        no QA desta spec (o QA manual das specs da Fase 1 foi adiado para
        este ponto).
   - _Requisitos: nenhum (ajuste)_
-  - notas:
+  - notas: Criado só `fases/fase-01-refatoracao/docs/fase-01-tutorial.md` com as 9 seções pedidas (7 GRASP, 4 padrões de projeto mais a seção "o que não é Strategy", 5 limitações, 21 casos no roteiro). Coluna "Resultado" do roteiro em branco, para o usuário preencher no QA. Nenhum código, teste ou spec alterado; sem decisões fora da spec. Ajuste de escopo mínimo: o caso 1 do roteiro usa "digitar 2" em vez de "Enter", porque o menu só aparece depois da primeira linha (ponto a). Sugestão fora de escopo: os diagramas Mermaid não foram renderizados por ferramenta, só escritos conforme `docs/fase-00-arquitetura.md`; vale conferir a renderização no QA. check.sh passou.
