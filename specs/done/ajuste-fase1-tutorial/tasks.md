@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-22.** Diferenças do planejado: o caso 1 do roteiro usa "digitar 2" em vez de "Enter" (o menu só aparece depois da primeira linha lida); a branch usada foi `chore/fase1-tutorial`, não `chore/issue-7-fase1-tutorial`. Fica em aberto a sugestão da revisão 01-r2: no caso 19 (`fase-01-tutorial.md:287`), "Obrigado por jogar!" também aparece na segunda execução, não só na terceira.
+
 # Tarefas: ajuste-fase1-tutorial
 
 **Issue:** #7 · **Fase:** 1 · **Depende de:** 6 (`ajuste-fase1-contratos`) · **Branch:** `chore/issue-7-fase1-tutorial`
@@ -9,8 +11,8 @@ partida: `docs/analise-inicial.md`, `docs/fase-00-arquitetura.md`, o
 `README.md` da Fase 1, `docs/contratos.md` (Ordem 6) e as specs em
 `specs/done/fase1-*`.
 
-- [ ] 1. Escrever `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`
-  - status: todo
+- [x] 1. Escrever `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`
+  - status: done
   - Não alterar nenhum arquivo fora do tutorial: nada em
     `fases/fase-01-refatoracao/src/`, `fases/fase-00-console/`,
     `fases/fase-02-gradle/` ou testes. O `check.sh` deve continuar passando.
@@ -54,4 +56,4 @@ partida: `docs/analise-inicial.md`, `docs/fase-00-arquitetura.md`, o
        no QA desta spec (o QA manual das specs da Fase 1 foi adiado para
        este ponto).
   - _Requisitos: nenhum (ajuste)_
-  - notas:
+  - notas: Criado só `fases/fase-01-refatoracao/docs/fase-01-tutorial.md` com as 9 seções pedidas (7 GRASP, 4 padrões de projeto mais a seção "o que não é Strategy", 5 limitações, 21 casos no roteiro). Coluna "Resultado" do roteiro em branco, para o usuário preencher no QA. Nenhum código, teste ou spec alterado; sem decisões fora da spec. Ajuste de escopo mínimo: o caso 1 do roteiro usa "digitar 2" em vez de "Enter", porque o menu só aparece depois da primeira linha (ponto a). Sugestão fora de escopo: os diagramas Mermaid não foram renderizados por ferramenta, só escritos conforme `docs/fase-00-arquitetura.md`; vale conferir a renderização no QA. check.sh passou. Rodada 2: corrigida a afirmação falsa sobre `Missao.haColisao` no O e no L (bloqueante da r1) e aplicadas as 3 sugestões (caso 2, caso 19 e aviso geral do menu antes da tabela). Só o tutorial foi alterado; check.sh passou.
