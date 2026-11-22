@@ -1,6 +1,6 @@
 # Tarefas: ajuste-fase3-tutorial
 
-**Issue:** a criar ("[Fase 3] Documentar a fase 3 (módulos, ciclo de vida, telas, composição, Top 10 e limitações)") · **Fase:** 3 · **Depende de:** 10 (`fase3-telas-menu`), 11 (`fase3-partida`) · **Branch:** `chore/issue-<n>-fase3-tutorial`
+**Issue:** #35 · **Fase:** 3 · **Depende de:** 10 (`fase3-telas-menu`), 11 (`fase3-partida`) · **Branch:** `chore/issue-35-fase3-tutorial`
 
 Ajuste só de documentação. Ele cria o README da Fase 3 e o tutorial
 `docs/fase-03-tutorial.md`, no mesmo lugar do tutorial da Fase 2

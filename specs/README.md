@@ -9,7 +9,7 @@
 | 9 | fase3-ranking-service | #15 | A | 8 | na fila | `application.ranking` com `RankingService` Top 10 (só vitória, > 0, lista cheia só aceita maior que o 10º); remove o `RankingTop5` e migra os testes |
 | 10 | fase3-telas-menu | #14 | C | 8, 9 | na fila | Menu (1 Jogar, 2 Ranking, 3 Limpar com confirmação, 4 Sair), Nova partida (nome até 20, dificuldade por setas, mapa fixo 11×11) e Ranking Top 10 com resumo |
 | 11 | fase3-partida | #16 | B | 8, 9, 10 | na fila | Partida na janela: tecla → `Acao` (só `E` embarca), mapa 11×11 com `MapaGeometria`, painel e mensagens, fim com `Enter` e registro único no Top 10 |
-| 12 | ajuste-fase3-tutorial | a criar | — | 10, 11 | na fila | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
+| 12 | ajuste-fase3-tutorial | #35 | — | 10, 11 | na fila | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
 
 ## Backlog (planned/)
 
