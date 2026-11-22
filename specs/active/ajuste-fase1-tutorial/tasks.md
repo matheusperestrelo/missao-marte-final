@@ -9,8 +9,8 @@ partida: `docs/analise-inicial.md`, `docs/fase-00-arquitetura.md`, o
 `README.md` da Fase 1, `docs/contratos.md` (Ordem 6) e as specs em
 `specs/done/fase1-*`.
 
-- [ ] 1. Escrever `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`
-  - status: review
+- [x] 1. Escrever `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`
+  - status: done
   - Não alterar nenhum arquivo fora do tutorial: nada em
     `fases/fase-01-refatoracao/src/`, `fases/fase-00-console/`,
     `fases/fase-02-gradle/` ou testes. O `check.sh` deve continuar passando.
