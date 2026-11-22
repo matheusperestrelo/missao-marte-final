@@ -4,7 +4,7 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 7 | ajuste-fase1-tutorial | #7 | — | 6 | na fila | `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`: SOLID, GRASP, padrões, diagramas, limitações e roteiro manual (só documentação) |
+| 7 | ajuste-fase1-tutorial | #7 | — | 6 | em andamento | `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`: SOLID, GRASP, padrões, diagramas, limitações e roteiro manual (só documentação) |
 
 ## Backlog (planned/)
 
