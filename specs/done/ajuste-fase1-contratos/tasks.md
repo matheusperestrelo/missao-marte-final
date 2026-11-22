@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-22.** Diferenças do planejado: `FileRankingRepository.carregar()` ordena mas não limita a 5 (o limite vem de `RankingTop5.registrar`), registrado na seção 6 do documento; a branch usada foi `chore/fase1-contratos`, não `chore/issue-13-fase1-contratos`. Ficam em aberto a seção "Aprovação" (três integrantes) e a sugestão S1 da revisão 01-r1 (lista vazia sem exceção e `ranking.json` com mais de 5 entradas em `docs/contratos.md:181-185`).
+
 # Tarefas: ajuste-fase1-contratos
 
 **Issue:** #13 · **Fase:** 1 · **Depende de:** — · **Branch:** `chore/issue-13-fase1-contratos`
@@ -8,8 +10,8 @@ descreve o código **como ele está** em `fases/fase-01-refatoracao/src/missaoma
 (fonte de verdade; idêntico ao de `fases/fase-02-gradle/src/main/java/`).
 A parte da Fase 5 é uma **proposta a combinar**, não decisão.
 
-- [ ] 1. Escrever `docs/contratos.md` com os contratos da Fase 1 e a proposta da Fase 5
-  - status: todo
+- [x] 1. Escrever `docs/contratos.md` com os contratos da Fase 1 e a proposta da Fase 5
+  - status: done
   - Não alterar nenhum arquivo fora de `docs/contratos.md`: nada de código,
     testes, `fases/` ou outros docs. O `check.sh` deve continuar passando.
   - Conferir cada assinatura no código antes de escrever; se algo da lista
@@ -66,4 +68,4 @@ A parte da Fase 5 é uma **proposta a combinar**, não decisão.
     integrantes e revisão do PR por outro integrante. Deixar no fim do
     documento uma seção "Aprovação" com os três nomes em aberto.
   - _Requisitos: nenhum (ajuste)_
-  - notas:
+  - notas: Criado docs/contratos.md (seções 1-8 + Aprovação), conferido contra o código da Fase 1. Divergência além do plano, registrada na seção 6: FileRankingRepository.carregar() ordena mas não limita a 5 (o limite vem de RankingTop5.registrar). Seções 7 e 8 marcadas como proposta. Sem teste (ajuste só de documentação). Aprovação dos integrantes fica em aberto.
