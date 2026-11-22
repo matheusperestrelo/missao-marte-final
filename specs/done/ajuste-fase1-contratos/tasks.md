@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-22.** Diferenças do planejado: `FileRankingRepository.carregar()` ordena mas não limita a 5 (o limite vem de `RankingTop5.registrar`), registrado na seção 6 do documento; a branch usada foi `chore/fase1-contratos`, não `chore/issue-13-fase1-contratos`. Ficam em aberto a seção "Aprovação" (três integrantes) e a sugestão S1 da revisão 01-r1 (lista vazia sem exceção e `ranking.json` com mais de 5 entradas em `docs/contratos.md:181-185`).
+
 # Tarefas: ajuste-fase1-contratos
 
 **Issue:** #13 · **Fase:** 1 · **Depende de:** — · **Branch:** `chore/issue-13-fase1-contratos`
