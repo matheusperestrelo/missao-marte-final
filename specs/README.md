@@ -4,7 +4,6 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 7 | ajuste-fase1-tutorial | #7 | — | 6 | na fila | `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`: SOLID, GRASP, padrões, diagramas, limitações e roteiro manual (só documentação) |
 | 8 | fase3-estrutura-libgdx | #14 | C | 5 | na fila | Fase 3 multi-módulo (`core` + `lwjgl3`, libGDX 1.12.1): regras e testes da Fase 2 em `core` (sem console), `Game`, `TelaBase` e janela 800×600 abrindo |
 | 9 | fase3-ranking-service | #15 | A | 8 | na fila | `application.ranking` com `RankingService` Top 10 (só vitória, > 0, lista cheia só aceita maior que o 10º); remove o `RankingTop5` e migra os testes |
 | 10 | fase3-telas-menu | #14 | C | 8, 9 | na fila | Menu (1 Jogar, 2 Ranking, 3 Limpar com confirmação, 4 Sair), Nova partida (nome até 20, dificuldade por setas, mapa fixo 11×11) e Ranking Top 10 com resumo |
@@ -33,3 +32,4 @@ aberto. Cada briefing vira specs em `active/` quando a fase for planejada.
 | 4 | fase2-gradle | 2026-11-21 | Fase 1 movida para o layout Gradle (Wrapper 8.7, plugin `application`, Java 17), fontes idênticos conferidos por `comparar-hash.sh` |
 | 5 | fase2-testes-junit | 2026-11-21 | JUnit 5 (BOM 5.10.x) e testes de domínio, ação, dificuldade, fábrica, sessão e ranking, sem alterar `src/main/java` |
 | 6 | ajuste-fase1-contratos | 2026-11-22 | `docs/contratos.md`: contratos da Fase 1 como implementados e proposta da API/porta da Fase 5 (só documentação) |
+| 7 | ajuste-fase1-tutorial | 2026-11-22 | `fases/fase-01-refatoracao/docs/fase-01-tutorial.md`: SOLID, GRASP, padrões, diagramas, limitações e roteiro manual (só documentação) |
