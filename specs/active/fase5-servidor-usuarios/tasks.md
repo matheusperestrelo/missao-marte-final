@@ -1,7 +1,7 @@
 # Tarefas: fase5-servidor-usuarios
 
 - [ ] 1. Criar o servidor Spring Boot com `GET /api/saude` público e todas as outras rotas protegidas com 401 em `ProblemDetail`
-  - status: todo
+  - status: review
   - Fatia vertical: `fases/fase-05-servidor-ranking/` com `README.md` (R8.1) e `.gitignore`; `servidor/` com o Wrapper 9.8.2 (gerar **antes** do `build.gradle`, ver design, "Riscos"), `settings.gradle`, `build.gradle` (Boot 4.1.2, Java 17, dependências do design), `application.properties` de produção e de teste, `MissaoMarteServidorApplication`.
   - `ConfiguracaoSeguranca` (sem estado, CSRF desligado, liberando só `GET /api/saude` e `/error` por enquanto, mais as duas rotas `POST` que já podem ficar na lista), `EntradaNaoAutenticada` (401 `ProblemDetail` com `detail` fixo e `WWW-Authenticate: Bearer`), `SaudeController` e `TratadorDeErros` com o 500 genérico.
   - O resource server precisa de um `JwtDecoder` para subir: nesta tarefa, criar já o `SegredoJwt` e o `ConfiguracaoJwt` (decoder com HS256 e `Clock`), sem emissor. Cobrir o `SegredoJwt` com testes (R6.2, R6.3, R6.4) aqui.
@@ -10,7 +10,7 @@
   - Conferir com JDK 17: `./gradlew clean build` em `servidor/`, `./gradlew bootRun` + `curl http://127.0.0.1:8080/api/saude`, arquivo H2 criado em `./dados` (ou `MISSAOMARTE_DADOS`). Rodar o `.workflow/check.sh`.
   - Não alterar nada fora de `fases/fase-05-servidor-ranking/`.
   - _Requisitos: R1, R2, R5, R6, R7, R8_
-  - notas:
+  - notas: Servidor Spring Boot criado (Wrapper 9.8.2, Boot 4.1.2, Java 17) com saúde pública, segurança sem estado, 401 em ProblemDetail, SegredoJwt/ConfiguracaoJwt (decoder HS256 com Clock), READMEs e requests.http. Desvio pequeno do design: o filtro Bearer recusa token inválido até em rota liberada (R2.2), então a ConfiguracaoSeguranca usa um BearerTokenResolver que ignora o token nas 4 rotas públicas. O aviso no log do segredo aleatório (parte de R6.2/R6.4) só foi conferido manualmente no bootRun; não há teste de log, só da resolução pura (sugestão: cobrir na tarefa 3 com o teste de log). Manual com JDK 17: saúde 200, rota inexistente 401 problem+json com WWW-Authenticate, arquivo H2 criado em ./dados.
 
 - [ ] 2. Implementar o cadastro `POST /api/usuarios` com validação, hash BCrypt e 409 por nome normalizado
   - status: todo

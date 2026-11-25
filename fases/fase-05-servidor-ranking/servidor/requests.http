@@ -1,0 +1,8 @@
+@base = http://127.0.0.1:8080
+
+### Saúde (pública)
+# @name saude
+GET {{base}}/api/saude
+
+### Rota sem token: 401 em ProblemDetail
+GET {{base}}/api/qualquer-coisa
