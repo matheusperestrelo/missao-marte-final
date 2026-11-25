@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-24.** Diferenças do planejado: a `ConfiguracaoSeguranca` usa um `BearerTokenResolver` que ignora o token nas 4 rotas públicas (sem isso, token inválido dava 401 na saúde e quebrava R2.2), e o `TratadorDeErros` ganhou um handler de `AuthenticationException` para o `sub` inexistente dar 401 e não 500; a tarefa 5 foi acrescentada por ajuste aprovado na verificação final para testar o 404 e o 500 de R7.1 e corrigir o README. Ficaram como sugestões abertas (ver `reviews/final.md`): exemplos com `/api/qualquer-coisa` no `requests.http` (para a spec 14), teste `r5_2` duplicado, 401 de token montado em dois lugares e testes extras não exigidos (409 por concorrência, `toString` de `TokenEmitido`, R6.1 pelo valor configurado). Por decisão do usuário, a partir da rodada 2 da tarefa 1 tudo foi commitado num único commit no fim da spec.
+
 # Requisitos: fase5-servidor-usuarios
 
 **Issue:** #20 · **Trilha:** C · **Fase:** 5 · **Depende de:** —
