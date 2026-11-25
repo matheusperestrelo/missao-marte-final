@@ -2,6 +2,11 @@
 
 ## Fila de implementação (active/)
 
+> **Divisão do trabalho:** as specs 8 a 12 (Fase 3) são do André Felipe;
+> as specs 13 e 14 (servidor da Fase 5) são do Matheus. Cada orquestrador
+> só pega as specs do próprio integrante, mesmo que outra esteja elegível
+> antes na fila.
+
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
 | 8 | fase3-estrutura-libgdx | #14 | C | 5 | na fila | Fase 3 multi-módulo (`core` + `lwjgl3`, libGDX 1.12.1): regras e testes da Fase 2 em `core` (sem console), `Game`, `TelaBase` e janela 800×600 abrindo |
