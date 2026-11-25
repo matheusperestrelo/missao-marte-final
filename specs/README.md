@@ -14,7 +14,7 @@
 | 10 | fase3-telas-menu | #14 | C | 8, 9 | na fila | Menu (1 Jogar, 2 Ranking, 3 Limpar com confirmação, 4 Sair), Nova partida (nome até 20, dificuldade por setas, mapa fixo 11×11) e Ranking Top 10 com resumo |
 | 11 | fase3-partida | #16 | B | 8, 9, 10 | na fila | Partida na janela: tecla → `Acao` (só `E` embarca), mapa 11×11 com `MapaGeometria`, painel e mensagens, fim com `Enter` e registro único no Top 10 |
 | 12 | ajuste-fase3-tutorial | #35 | — | 10, 11 | na fila | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
-| 13 | fase5-servidor-usuarios | #20 | C | — | na fila | Fase 5 só com `servidor/` (Spring Boot 4.1.2, Wrapper 9.8.2, H2 em arquivo): `/api/saude`, cadastro (BCrypt, 409 por nome normalizado), login JWT HS256 2 h, tudo protegido, todo 401 em `ProblemDetail`, segredo < 32 bytes não sobe |
+| 13 | fase5-servidor-usuarios | #20 | C | — | em andamento | Fase 5 só com `servidor/` (Spring Boot 4.1.2, Wrapper 9.8.2, H2 em arquivo): `/api/saude`, cadastro (BCrypt, 409 por nome normalizado), login JWT HS256 2 h, tudo protegido, todo 401 em `ProblemDetail`, segredo < 32 bytes não sobe |
 | 14 | fase5-servidor-partidas-ranking | #22 | C | 13 | na fila | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
 
 ## Backlog (planned/)
