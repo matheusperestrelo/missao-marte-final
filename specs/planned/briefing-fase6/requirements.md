@@ -35,7 +35,9 @@ fica sem spec.
   criptografia só no build de debug; `./gradlew :android:assembleDebug` ou
   evidência da limitação. **Servidor** (sem mudar rotas): endereço e porta
   por variável de ambiente (padrão `127.0.0.1:8080`), nome fixo do JAR,
-  encerramento gracioso.
+  encerramento gracioso. _Sobreposição:_ o servidor de partida é o das
+  specs 13 e 14 (`fase5-servidor-usuarios`, `fase5-servidor-partidas-ranking`),
+  que fixam `server.address`/`server.port` só no `application.properties`.
 - **fase6-toque:** botões virtuais na partida (4 setas, Embarcar, Abortar)
   gerando a mesma `Acao` das teclas; menus por toque chamando o mesmo
   código das teclas; botão Voltar do Android; modo toque no desktop com
