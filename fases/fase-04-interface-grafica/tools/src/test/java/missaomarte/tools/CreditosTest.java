@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import missaomarte.gdx.catalogo.Imagem;
+import missaomarte.gdx.catalogo.Som;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -20,6 +21,9 @@ class CreditosTest {
 
         for (Imagem imagem : Imagem.values()) {
             assertTrue(texto.contains(imagem.caminho()), "faltou nos créditos: " + imagem.caminho());
+        }
+        for (Som som : Som.values()) {
+            assertTrue(texto.contains(som.caminho()), "faltou nos créditos: " + som.caminho());
         }
         assertTrue(texto.contains("programa próprio"));
         assertTrue(texto.contains("./gradlew :tools:gerarAssets"));

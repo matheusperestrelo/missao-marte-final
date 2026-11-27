@@ -26,3 +26,14 @@ Para gerá-los de novo, na pasta da fase:
 - `imagens/vida_vazia.png`
 - `imagens/vaga_ocupada.png`
 - `imagens/vaga_livre.png`
+
+## Sons
+
+- `sons/mover.wav`
+- `sons/selecionar.wav`
+- `sons/embarcar.wav`
+- `sons/entregar.wav`
+- `sons/colisao.wav`
+- `sons/vitoria.wav`
+- `sons/derrota.wav`
+- `sons/musica.wav`

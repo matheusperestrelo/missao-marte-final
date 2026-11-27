@@ -1,13 +1,16 @@
 package missaomarte.tools;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
 import missaomarte.gdx.catalogo.Imagem;
+import missaomarte.gdx.catalogo.Som;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -22,6 +25,9 @@ class GeradorAssetsTest {
         for (Imagem imagem : Imagem.values()) {
             assertTrue(saida.resolve(imagem.caminho()).toFile().isFile(), imagem.caminho());
         }
+        for (Som som : Som.values()) {
+            assertTrue(saida.resolve(som.caminho()).toFile().isFile(), som.caminho());
+        }
     }
 
     @Test
@@ -35,6 +41,10 @@ class GeradorAssetsTest {
         for (Imagem imagem : Imagem.values()) {
             assertMesmosPixels(a.resolve(imagem.caminho()), b.resolve(imagem.caminho()));
         }
+        for (Som som : Som.values()) {
+            assertArrayEquals(Files.readAllBytes(a.resolve(som.caminho())),
+                    Files.readAllBytes(b.resolve(som.caminho())), som.caminho());
+        }
     }
 
     @Test
@@ -44,6 +54,10 @@ class GeradorAssetsTest {
         for (Imagem imagem : Imagem.values()) {
             assertMesmosPixels(tmp.resolve(imagem.caminho()),
                     ImagensAssetsTest.pastaAssets().resolve(imagem.caminho()));
+        }
+        for (Som som : Som.values()) {
+            assertArrayEquals(Files.readAllBytes(tmp.resolve(som.caminho())),
+                    Files.readAllBytes(ImagensAssetsTest.pastaAssets().resolve(som.caminho())), som.caminho());
         }
     }
 

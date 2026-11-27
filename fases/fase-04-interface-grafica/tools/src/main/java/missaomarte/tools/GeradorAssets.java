@@ -6,8 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import missaomarte.gdx.catalogo.Imagem;
+import missaomarte.gdx.catalogo.Som;
 
-/** Gera todas as imagens e o CREDITOS.md numa pasta (por padrão, core/assets). */
+/** Gera todas as imagens, os sons e o CREDITOS.md numa pasta (por padrão, core/assets). */
 public final class GeradorAssets {
 
     private GeradorAssets() {
@@ -31,6 +32,9 @@ public final class GeradorAssets {
         for (Imagem imagem : Imagem.values()) {
             GeradorImagens.gravar(imagem, pasta);
         }
+        for (Som som : Som.values()) {
+            GeradorSons.gravar(som, pasta);
+        }
         Files.writeString(pasta.resolve("CREDITOS.md"), creditos(), StandardCharsets.UTF_8);
     }
 
@@ -44,6 +48,10 @@ public final class GeradorAssets {
         texto.append("## Imagens\n\n");
         for (Imagem imagem : Imagem.values()) {
             texto.append("- `").append(imagem.caminho()).append("`\n");
+        }
+        texto.append("\n## Sons\n\n");
+        for (Som som : Som.values()) {
+            texto.append("- `").append(som.caminho()).append("`\n");
         }
         return texto.toString();
     }
