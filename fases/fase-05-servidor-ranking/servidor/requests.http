@@ -45,3 +45,40 @@ Content-Type: application/json
 ### Rota protegida com o token (exemplo; ainda não existe rota protegida real)
 GET {{base}}/api/qualquer-coisa
 Authorization: Bearer {{token}}
+
+### Registrar vitória (201)
+POST {{base}}/api/partidas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"dificuldade": "MEDIO", "resultado": "VITORIA", "pontuacao": 1200, "duracaoSegundos": 95, "movimentos": 40}
+
+### Registrar derrota (201)
+POST {{base}}/api/partidas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"dificuldade": "FACIL", "resultado": "DERROTA", "pontuacao": 0, "duracaoSegundos": 30, "movimentos": 12}
+
+### Registrar partida inválida: resultado ABORTADA e duração negativa (400)
+POST {{base}}/api/partidas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"dificuldade": "FACIL", "resultado": "ABORTADA", "pontuacao": 10, "duracaoSegundos": -1, "movimentos": 3}
+
+### Histórico: padrão, página 0 com 10 itens (200)
+GET {{base}}/api/partidas/minhas
+Authorization: Bearer {{token}}
+
+### Histórico: página 1 com 5 itens (200)
+GET {{base}}/api/partidas/minhas?pagina=1&tamanho=5
+Authorization: Bearer {{token}}
+
+### Histórico: tamanho 51 fora da faixa (400)
+GET {{base}}/api/partidas/minhas?tamanho=51
+Authorization: Bearer {{token}}
+
+### Ranking global: Top 10 (200)
+GET {{base}}/api/ranking
+Authorization: Bearer {{token}}
