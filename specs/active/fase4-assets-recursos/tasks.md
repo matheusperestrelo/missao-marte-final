@@ -24,8 +24,8 @@
   - _Requisitos: R5.4, R6, R7_
   - notas: `Recursos` (AssetManager, sem static; `carregar()` síncrono só com as imagens, log "n arquivos carregados"; `textura`, `quadro(Imagem,i)`, `dispose`) criado em `MissaoMarteGame.create()` antes da primeira tela e liberado em `dispose()`; `getRecursos()`. `TelaPartida` desenha `TERRENO` em cada célula e o quadro 0 de `Imagem.doSimbolo(simbolo)` (ordem base, demais, nave mantida); retângulos, símbolos escritos e `CoresElemento` removidos (sem teste próprio). `lwjgl3/build.gradle` com `core/assets` em resources. `grep instanceof` na camada gdx: vazio; `new Texture`: vazio (só `new TextureRegion` em Recursos). Sem teste novo: `Recursos` exige OpenGL (design). Não verificado em janela (modo subagente): imagens no lugar dos retângulos, nave sobre a base, `W/↑` e erro de arquivo renomeado (R6.4, a mensagem vem do AssetManager) ficam para o QA. `desenharGrade` ainda desenha fundo e linhas sob o terreno (ficam cobertos; limpar é sugestão fora de escopo).
 
-- [ ] 4. Criar o catálogo `Som` e gerar, commitar e carregar os sons e a música
-  - status: review
+- [x] 4. Criar o catálogo `Som` e gerar, commitar e carregar os sons e a música
+  - status: done
   - `Som` em `gdx/catalogo/`, sem `com.badlogic`. `GeradorSons` (efeitos sintetizados e música de ~8 s, WAV à mão). Rodar `gerarAssets` de novo e commitar `core/assets/sons/*.wav` e o `CREDITOS.md` atualizado.
   - Testes em `tools`: `SonsAssetsTest` (R4); estender `GeradorAssetsTest` e `CreditosTest` aos sons.
   - `Recursos` passa a carregar os `Sound` e a `Music`, com `som(Som)` e `musica()`. Nada toca ainda (spec 16). Conferir no log que todos os arquivos foram carregados.
