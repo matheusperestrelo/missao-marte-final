@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -36,6 +37,43 @@ public class TratadorDeErros extends ResponseEntityExceptionHandler {
         for (FieldError erro : ex.getBindingResult().getFieldErrors()) {
             porCampo.putIfAbsent(erro.getField(), erro.getDefaultMessage());
         }
+        List<ErroDeCampo> erros = porCampo.entrySet().stream()
+                .map(e -> new ErroDeCampo(e.getKey(), e.getValue()))
+                .toList();
+        ProblemDetail problema = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
+                "Dados inválidos.");
+        problema.setTitle("Requisição inválida");
+        problema.setProperty("erros", erros);
+        return handleExceptionInternal(ex, problema, headers, status, request);
+    }
+
+    /** Parâmetro de consulta fora da faixa (ex.: tamanho=51): 400 citando o parâmetro. */
+    @Override
+    protected ResponseEntity<Object> handleHandlerMethodValidationException(
+            HandlerMethodValidationException ex, HttpHeaders headers, HttpStatusCode status,
+            WebRequest request) {
+        Map<String, String> porCampo = new LinkedHashMap<>();
+        ex.getParameterValidationResults().forEach(resultado -> {
+            String nome = resultado.getMethodParameter().getParameterName();
+            resultado.getResolvableErrors().forEach(erro ->
+                    porCampo.putIfAbsent(nome, erro.getDefaultMessage()));
+        });
+        return responder400(ex, porCampo, headers, status, request);
+    }
+
+    /** Parâmetro de consulta que não é do tipo certo (ex.: tamanho=abc): 400 citando o parâmetro. */
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(
+            org.springframework.beans.TypeMismatchException ex, HttpHeaders headers,
+            HttpStatusCode status, WebRequest request) {
+        Map<String, String> porCampo = new LinkedHashMap<>();
+        porCampo.put(ex.getPropertyName() == null ? "parametro" : ex.getPropertyName(),
+                "Valor inválido.");
+        return responder400(ex, porCampo, headers, status, request);
+    }
+
+    private ResponseEntity<Object> responder400(Exception ex, Map<String, String> porCampo,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<ErroDeCampo> erros = porCampo.entrySet().stream()
                 .map(e -> new ErroDeCampo(e.getKey(), e.getValue()))
                 .toList();

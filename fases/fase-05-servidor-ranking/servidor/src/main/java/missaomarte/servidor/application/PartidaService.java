@@ -5,6 +5,9 @@ import java.time.Instant;
 import missaomarte.servidor.domain.Partida;
 import missaomarte.servidor.domain.PartidaRepository;
 import missaomarte.servidor.domain.UsuarioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +28,10 @@ public class PartidaService {
                 dados.dificuldade(), dados.resultado(), dados.pontuacao(), dados.duracaoSegundos(),
                 dados.movimentos(), Instant.now(clock)));
         return new PartidaRegistrada(salva, null);
+    }
+
+    public Page<Partida> historico(long usuarioId, int pagina, int tamanho) {
+        Sort ordem = Sort.by(Sort.Direction.DESC, "dataHora").and(Sort.by(Sort.Direction.DESC, "id"));
+        return partidas.findByUsuarioId(usuarioId, PageRequest.of(pagina, tamanho, ordem));
     }
 }

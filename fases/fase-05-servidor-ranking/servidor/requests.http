@@ -66,3 +66,15 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {"dificuldade": "FACIL", "resultado": "ABORTADA", "pontuacao": 10, "duracaoSegundos": -1, "movimentos": 3}
+
+### Histórico: padrão, página 0 com 10 itens (200)
+GET {{base}}/api/partidas/minhas
+Authorization: Bearer {{token}}
+
+### Histórico: página 1 com 5 itens (200)
+GET {{base}}/api/partidas/minhas?pagina=1&tamanho=5
+Authorization: Bearer {{token}}
+
+### Histórico: tamanho 51 fora da faixa (400)
+GET {{base}}/api/partidas/minhas?tamanho=51
+Authorization: Bearer {{token}}

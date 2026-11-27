@@ -10,12 +10,12 @@
   - notas: Entidade Partida, repositório, serviço (posicaoRanking sempre null por enquanto), controller e DTOs criados; testes RegistroPartidaApiTest e ValidacaoPartidaApiTest com auxiliares RelogioDeTeste/ConfiguracaoRelogioDeTeste (Clock @Primary controlável). O Jackson aceitava decimal como inteiro (1.5 virava 1): ligado `spring.jackson.deserialization.accept-float-as-int=false` em main e em src/test/resources/application.properties (o de teste substitui o principal). Não foi preciso novo handler no TratadorDeErros: enum inválido, tipo errado e JSON malformado já saem 400 em ProblemDetail pelo ResponseEntityExceptionHandler (sem lista `erros`, que só existe para campos de bean validation); os handlers de parâmetro de consulta ficam para a tarefa 2. README e requests.http atualizados (rota POST, faixas, 3 exemplos).
 
 - [ ] 2. Expor o histórico paginado `GET /api/partidas/minhas` só com as partidas do dono
-  - status: todo
+  - status: review
   - `PartidaService.historico` com a ordenação `dataHora` ↓ e `id` ↓, `PaginaPartidasResponse`, `PartidaResponse`, `GET /api/partidas/minhas` com `pagina` (padrão 0, ≥ 0) e `tamanho` (padrão 10, de 1 a 50) e o tratamento de `HandlerMethodValidationException`/`MethodArgumentTypeMismatchException` no `TratadorDeErros`.
   - Testes `HistoricoApiTest` com todos os casos de R3.
   - Acrescentar a rota ao README e ao `requests.http` (padrão, página 1, `tamanho=51`).
   - _Requisitos: R3, R5, R6_
-  - notas:
+  - notas: `PartidaService.historico` (dataHora ↓, id ↓), `GET /api/partidas/minhas`, `PartidaResponse` e `PaginaPartidasResponse` criados; `HistoricoApiTest` cobre R3.1 a R3.9. Parâmetros validados com `@Min`/`@Max` direto nos `@RequestParam`, SEM `@Validated` na classe (o design previa `@Validated`, mas ele troca a exceção por `ConstraintViolationException`; sem ele o Spring 7 lança `HandlerMethodValidationException`, que o `TratadorDeErros` agora trata, junto com `handleTypeMismatch` para `tamanho=abc`; ambos devolvem 400 com `erros [{campo, mensagem}]` citando o parâmetro). `HistoricoApiTest` limpa as partidas também em `@AfterEach`, senão o `deleteAll` de usuários de outras classes de teste (ex.: LoginApiTest) quebra pela chave estrangeira. Sugestão fora de escopo: `RegistroPartidaApiTest`/`ValidacaoPartidaApiTest` deixam partidas no banco ao fim e dependem da ordem de execução. README e requests.http atualizados.
 
 - [ ] 3. Calcular o ranking global Top 10 e expor em `GET /api/ranking`
   - status: todo

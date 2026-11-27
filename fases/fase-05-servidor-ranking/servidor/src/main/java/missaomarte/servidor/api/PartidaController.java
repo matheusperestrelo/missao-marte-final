@@ -1,17 +1,24 @@
 package missaomarte.servidor.api;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import java.net.URI;
 import missaomarte.servidor.api.dto.NovaPartidaRequest;
+import missaomarte.servidor.api.dto.PaginaPartidasResponse;
 import missaomarte.servidor.api.dto.PartidaRegistradaResponse;
+import missaomarte.servidor.api.dto.PartidaResponse;
 import missaomarte.servidor.application.NovaPartida;
 import missaomarte.servidor.application.PartidaRegistrada;
 import missaomarte.servidor.application.PartidaService;
 import missaomarte.servidor.application.UsuarioAutenticado;
 import missaomarte.servidor.domain.Partida;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,5 +41,19 @@ public class PartidaController {
                 .body(new PartidaRegistradaResponse(p.getId(), p.getDificuldade(), p.getResultado(),
                         p.getPontuacao(), p.getDuracaoSegundos(), p.getMovimentos(),
                         p.getDataHora(), registrada.posicaoRanking()));
+    }
+
+    @GetMapping("/api/partidas/minhas")
+    public PaginaPartidasResponse minhas(UsuarioAutenticado usuario,
+            @RequestParam(defaultValue = "0") @Min(0) Integer pagina,
+            @RequestParam(defaultValue = "10") @Min(1) @Max(50) Integer tamanho) {
+        Page<Partida> resultado = servico.historico(usuario.id(), pagina, tamanho);
+        return new PaginaPartidasResponse(
+                resultado.getContent().stream()
+                        .map(p -> new PartidaResponse(p.getId(), p.getDificuldade(), p.getResultado(),
+                                p.getPontuacao(), p.getDuracaoSegundos(), p.getMovimentos(),
+                                p.getDataHora()))
+                        .toList(),
+                pagina, tamanho, resultado.getTotalElements(), resultado.getTotalPages());
     }
 }
