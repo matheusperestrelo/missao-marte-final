@@ -9,7 +9,6 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 14 | fase5-servidor-partidas-ranking | #22 | C | 13 | aguardando QA | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
 
 ## Backlog (planned/)
 
@@ -40,3 +39,4 @@ aberto. Cada briefing vira specs em `active/` quando a fase for planejada.
 | 11 | fase3-partida | 2026-11-26 | Partida na janela: tecla → `Acao` (só `E` embarca), mapa 11×11 com `MapaGeometria`, painel e mensagens, fim com `Enter` e registro único no Top 10 |
 | 12 | ajuste-fase3-tutorial | 2026-11-26 | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
 | 13 | fase5-servidor-usuarios | 2026-11-24 | Servidor da Fase 5 (Spring Boot 4.1.2, Wrapper 9.8.2, H2 em arquivo): `/api/saude` pública, cadastro com BCrypt e 409 por nome normalizado, login JWT HS256 de 2 h, demais rotas protegidas com 401 em `ProblemDetail`, segredo < 32 bytes não sobe |
+| 14 | fase5-servidor-partidas-ranking | 2026-11-26 | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
