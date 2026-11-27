@@ -10,7 +10,6 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 15 | fase4-assets-recursos | a criar | C | 11 | aguardando QA | Cria a Fase 4 copiando a Fase 3; módulo `tools` gera e commita imagens (PNG, animações em faixa) e sons (WAV sintetizados, música de ~8 s) em `core/assets`; catálogo `Imagem`/`Som` sem libGDX, símbolo → imagem (genérica se desconhecido), `Recursos` com `AssetManager` carregado uma vez; partida desenhada com imagens |
 | 16 | fase4-interface-grafica | a criar | C | 15 | na fila | `MundoRenderer` com animações e nave girando, movimento suave (~12 células/s), um som por turno e explosão por cima, música em laço (pausa no fim, volta no Menu), caixa final, HUD (barra, painel, rodapé), fundo e "selecionar" nas outras telas, semente `-Dmissaomarte.semente=N`; README e `docs/fase-04-tutorial.md` |
 
 ## Backlog (planned/)
@@ -42,3 +41,4 @@ aberto. Cada briefing vira specs em `active/` quando a fase for planejada.
 | 12 | ajuste-fase3-tutorial | 2026-11-26 | README da Fase 3 e `docs/fase-03-tutorial.md`: módulos, ciclo de vida, telas, composição, mudanças (Top 10, mapa fixo, `E`, sem console) e limitações (só documentação) |
 | 13 | fase5-servidor-usuarios | 2026-11-24 | Servidor da Fase 5 (Spring Boot 4.1.2, Wrapper 9.8.2, H2 em arquivo): `/api/saude` pública, cadastro com BCrypt e 409 por nome normalizado, login JWT HS256 de 2 h, demais rotas protegidas com 401 em `ProblemDetail`, segredo < 32 bytes não sobe |
 | 14 | fase5-servidor-partidas-ranking | 2026-11-26 | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
+| 15 | fase4-assets-recursos | 2026-11-27 | Cria a Fase 4 copiando a Fase 3; módulo `tools` gera e commita imagens (PNG, animações em faixa) e sons (WAV sintetizados, música de ~8 s) em `core/assets`; catálogo `Imagem`/`Som` sem libGDX, símbolo → imagem (genérica se desconhecido), `Recursos` com `AssetManager` carregado uma vez; partida desenhada com imagens |
