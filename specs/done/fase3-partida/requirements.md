@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-26.** Diferenças do planejado: implementada fora do workflow no PR #38, sem `reviews/`; regularizada depois. Itens manuais (R1.8 sem repetição de tecla, R2 desenho do mapa, R4.5 quebra de linha do painel, R5.4/5.5/5.6 navegação) seguem pendentes de QA na janela.
+
 # Requisitos: fase3-partida
 
 **Issue:** #16 · **Trilha:** B · **Fase:** 3 · **Depende de:** 8 (`fase3-estrutura-libgdx`), 9 (`fase3-ranking-service`), 10 (`fase3-telas-menu`)

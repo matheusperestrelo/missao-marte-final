@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-26.** Diferenças do planejado: implementada fora do workflow no PR #38, sem `reviews/`; regularizada depois. `RankingTop5` e `RankingTop5Test` removidos da Fase 3 como previsto; o `RankingService` fica em `application.ranking` com 12 testes em `RankingServiceTest`.
+
 # Requisitos: fase3-ranking-service
 
 **Issue:** #15 · **Trilha:** A · **Fase:** 3 · **Depende de:** 8 (`fase3-estrutura-libgdx`)

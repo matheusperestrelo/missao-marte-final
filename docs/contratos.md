@@ -196,8 +196,8 @@ Acessores: `pontuacaoInicial()`, `passageiros()`, `asteroides()`, `inimigos()`,
   mão, no formato da Fase 0 (chaves `name`, `score`, `dificuldade`,
   `passageirosColetados`, `dataHora`, `tempoJogo`).
 
-**Nota:** na Fase 3 a regra vira `RankingService` com Top 10 em
-`application.ranking` (issue #15).
+**Nota:** na Fase 3 a regra virou `RankingService` com Top 10 em
+`application.ranking` (issue #15, concluída; o `RankingTop5` foi removido da Fase 3).
 
 ## 6. Diferenças em relação ao plano
 

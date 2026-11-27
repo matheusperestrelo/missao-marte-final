@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-26.** Diferenças do planejado: implementada fora do workflow no PR #38, sem `reviews/`; regularizada depois. A tela da Partida provisória (R5) foi substituída pela `TelaPartida` real da spec 11. Itens manuais (R1.1, R1.4, R3.1, R6.5) seguem pendentes de QA na janela.
+
 # Requisitos: fase3-telas-menu
 
 **Issue:** #14 (etapa 2) · **Trilha:** C · **Fase:** 3 · **Depende de:** 8 (`fase3-estrutura-libgdx`), 9 (`fase3-ranking-service`)

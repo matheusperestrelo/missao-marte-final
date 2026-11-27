@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-26.** Diferenças do planejado: implementada fora do workflow no PR #38 (mergeado em 2026-11-25), sem `reviews/` por tarefa nem `final.md`, e regularizada depois; a `TelaInicial` provisória foi substituída pelo `TelaMenu` da spec 10.
+
 # Requisitos: fase3-estrutura-libgdx
 
 **Issue:** #14 (etapa 1) · **Trilha:** C · **Fase:** 3 · **Depende de:** 5 (`fase2-testes-junit`)
