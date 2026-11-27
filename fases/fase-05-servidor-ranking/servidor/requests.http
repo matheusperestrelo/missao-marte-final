@@ -1,0 +1,47 @@
+@base = http://127.0.0.1:8080
+
+### Saúde (pública)
+# @name saude
+GET {{base}}/api/saude
+
+### Rota sem token: 401 em ProblemDetail
+GET {{base}}/api/qualquer-coisa
+
+### Cadastro válido (201)
+# @name cadastro
+POST {{base}}/api/usuarios
+Content-Type: application/json
+
+{"nome": "Matheus", "senha": "senha-boa-123"}
+
+### Cadastro repetido com outra caixa (409)
+POST {{base}}/api/usuarios
+Content-Type: application/json
+
+{"nome": "MATHEUS", "senha": "senha-boa-123"}
+
+### Cadastro inválido: nome com espaço e senha curta (400, dois itens em erros)
+POST {{base}}/api/usuarios
+Content-Type: application/json
+
+{"nome": "a b", "senha": "123"}
+
+### Login válido (200); o token fica na variável @token
+# @name login
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"nome": "Matheus", "senha": "senha-boa-123"}
+
+###
+@token = {{login.response.body.token}}
+
+### Login com senha errada (401, mesmo corpo de usuário inexistente)
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"nome": "Matheus", "senha": "senha-errada-1"}
+
+### Rota protegida com o token (exemplo; ainda não existe rota protegida real)
+GET {{base}}/api/qualquer-coisa
+Authorization: Bearer {{token}}
