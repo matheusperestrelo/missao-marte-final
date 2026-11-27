@@ -9,8 +9,8 @@
   - _Requisitos: R1, R2, R5, R6_
   - notas: Entidade Partida, repositório, serviço (posicaoRanking sempre null por enquanto), controller e DTOs criados; testes RegistroPartidaApiTest e ValidacaoPartidaApiTest com auxiliares RelogioDeTeste/ConfiguracaoRelogioDeTeste (Clock @Primary controlável). O Jackson aceitava decimal como inteiro (1.5 virava 1): ligado `spring.jackson.deserialization.accept-float-as-int=false` em main e em src/test/resources/application.properties (o de teste substitui o principal). Não foi preciso novo handler no TratadorDeErros: enum inválido, tipo errado e JSON malformado já saem 400 em ProblemDetail pelo ResponseEntityExceptionHandler (sem lista `erros`, que só existe para campos de bean validation); os handlers de parâmetro de consulta ficam para a tarefa 2. README e requests.http atualizados (rota POST, faixas, 3 exemplos).
 
-- [ ] 2. Expor o histórico paginado `GET /api/partidas/minhas` só com as partidas do dono
-  - status: review
+- [x] 2. Expor o histórico paginado `GET /api/partidas/minhas` só com as partidas do dono
+  - status: done
   - `PartidaService.historico` com a ordenação `dataHora` ↓ e `id` ↓, `PaginaPartidasResponse`, `PartidaResponse`, `GET /api/partidas/minhas` com `pagina` (padrão 0, ≥ 0) e `tamanho` (padrão 10, de 1 a 50) e o tratamento de `HandlerMethodValidationException`/`MethodArgumentTypeMismatchException` no `TratadorDeErros`.
   - Testes `HistoricoApiTest` com todos os casos de R3.
   - Acrescentar a rota ao README e ao `requests.http` (padrão, página 1, `tamanho=51`).
