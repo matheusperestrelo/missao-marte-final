@@ -9,7 +9,7 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 14 | fase5-servidor-partidas-ranking | #22 | C | 13 | em andamento | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
+| 14 | fase5-servidor-partidas-ranking | #22 | C | 13 | aguardando QA | `POST /api/partidas` (usuário do token, validação, `posicaoRanking`), histórico paginado (`pagina` 0, `tamanho` 1–50) e ranking global Top 10 (melhor vitória por jogador, desempates); limitação da pontuação no README |
 
 ## Backlog (planned/)
 
