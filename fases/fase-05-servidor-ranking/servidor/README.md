@@ -1,8 +1,7 @@
 # Servidor — Missão Marte
 
 API REST (Spring Boot 4.1.2, Java 17, H2 em arquivo). Estão no ar a saúde,
-o cadastro e o login; as demais rotas exigem token (as de partidas e ranking
-chegam na spec 14).
+o cadastro, o login e o registro de partidas; as demais rotas exigem token.
 
 ## Requisitos
 
@@ -49,6 +48,7 @@ sozinho, sem controle de versões nem reversão. Em produção, use migrações
 | GET | `/api/saude` | não | 200 `{"status":"ok"}` |
 | POST | `/api/usuarios` | não | 201 `{"id","nome"}` (com `Location`); 400 dados inválidos; 409 nome já existe |
 | POST | `/api/auth/login` | não | 200 `{"token","tipo":"Bearer","expiraEmSegundos":7200}`; 400 dados inválidos; 401 "Nome ou senha inválidos." (o mesmo corpo para usuário inexistente e senha errada) |
+| POST | `/api/partidas` | sim | 201 `{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora","posicaoRanking"}` (com `Location`; `posicaoRanking` é `null` por enquanto); 400 dados inválidos; 401 |
 | qualquer outra | qualquer outra | sim | 401 `ProblemDetail` ("Autenticação necessária ou token inválido.") com `WWW-Authenticate: Bearer` |
 
 Cadastro: `{"nome","senha"}`. O nome tem de 3 a 20 caracteres (letras sem
@@ -74,5 +74,13 @@ cookie de sessão, e aqui o token precisa ser colocado à mão no cabeçalho.
 Todo erro sai como `ProblemDetail` (`application/problem+json`). O 400 de
 validação traz `erros`, uma lista de `{"campo","mensagem"}` (um item por
 campo, sem o valor enviado).
+
+Registro de partida: `{"dificuldade","resultado","pontuacao","duracaoSegundos","movimentos"}`,
+todos obrigatórios. `dificuldade` é `FACIL`, `MEDIO` ou `DIFICIL`; `resultado` é
+`VITORIA` ou `DERROTA` (em maiúsculas; `ABORTADA` não é aceito). `pontuacao` vai de
+-100000 a 100000, `duracaoSegundos` de 0 a 86400 e `movimentos` de 0 a 100000, números
+inteiros (decimal é recusado com 400). A partida pertence ao usuário do token: campos a
+mais no corpo (`usuarioId`, `nome`, `id`, `dataHora`) são ignorados, e a `dataHora` é do
+servidor, em UTC (ISO-8601).
 
 Exemplos prontos em [`requests.http`](requests.http).
