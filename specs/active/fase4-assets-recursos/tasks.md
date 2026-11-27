@@ -1,7 +1,7 @@
 # Tarefas: fase4-assets-recursos
 
-- [ ] 1. Criar `fases/fase-04-interface-grafica/` copiando a Fase 3
-  - status: review
+- [x] 1. Criar `fases/fase-04-interface-grafica/` copiando a Fase 3
+  - status: done
   - Copiar tudo o que é versionado em `fases/fase-03-libgdx/` (sem `ranking.json`, `build/`, `.gradle/`). No `README.md` copiado, trocar só o título e o nome da pasta para Fase 4. Nenhum `.java` muda.
   - Conferir com `diff -r` que `domain`, `application` e `infrastructure` (main e test) são idênticos aos da Fase 3, registrar a saída nas notas, rodar o `check.sh` e abrir a janela com `./gradlew :lwjgl3:run`.
   - Commit sugerido: `feat: cria a fase 4 a partir da fase 3`.
