@@ -78,3 +78,7 @@ Authorization: Bearer {{token}}
 ### Histórico: tamanho 51 fora da faixa (400)
 GET {{base}}/api/partidas/minhas?tamanho=51
 Authorization: Bearer {{token}}
+
+### Ranking global: Top 10 (200)
+GET {{base}}/api/ranking
+Authorization: Bearer {{token}}

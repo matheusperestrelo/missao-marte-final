@@ -1,7 +1,7 @@
 # Servidor — Missão Marte
 
 API REST (Spring Boot 4.1.2, Java 17, H2 em arquivo). Estão no ar a saúde,
-o cadastro, o login e o registro de partidas; as demais rotas exigem token.
+o cadastro, o login e o registro de partidas, o histórico e o ranking; as demais rotas exigem token.
 
 ## Requisitos
 
@@ -50,6 +50,7 @@ sozinho, sem controle de versões nem reversão. Em produção, use migrações
 | POST | `/api/auth/login` | não | 200 `{"token","tipo":"Bearer","expiraEmSegundos":7200}`; 400 dados inválidos; 401 "Nome ou senha inválidos." (o mesmo corpo para usuário inexistente e senha errada) |
 | POST | `/api/partidas` | sim | 201 `{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora","posicaoRanking"}` (com `Location`; `posicaoRanking` é `null` por enquanto); 400 dados inválidos; 401 |
 | GET | `/api/partidas/minhas?pagina=0&tamanho=10` | sim | 200 `{"itens":[{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora"}],"pagina","tamanho","totalItens","totalPaginas"}` só com as partidas do dono, da mais recente para a mais antiga; `pagina` ≥ 0 (padrão 0), `tamanho` de 1 a 50 (padrão 10); página além do fim → 200 com `itens: []`; 400 parâmetro fora da faixa ou não inteiro (`erros` cita o parâmetro); 401 |
+| GET | `/api/ranking` | sim | 200 lista de `{"posicao","nome","pontuacao","dificuldade","duracaoSegundos","movimentos","dataHora"}`, no máximo 10 linhas, uma por jogador (a melhor vitória, só `VITORIA` com `pontuacao` > 0), por pontuação ↓, depois menor duração, depois partida mais antiga; sem vitórias → `[]`; 401 |
 | qualquer outra | qualquer outra | sim | 401 `ProblemDetail` ("Autenticação necessária ou token inválido.") com `WWW-Authenticate: Bearer` |
 
 Cadastro: `{"nome","senha"}`. O nome tem de 3 a 20 caracteres (letras sem
