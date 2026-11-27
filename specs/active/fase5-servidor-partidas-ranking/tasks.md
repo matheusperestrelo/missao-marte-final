@@ -25,8 +25,8 @@
   - _Requisitos: R4, R5, R6_
   - notas: `RankingGlobal` (função pura, comparador pontuação ↓, duração ↑, dataHora ↑, id ↑; uma linha por usuário; corte 10), `LinhaRanking`, `findByResultadoAndPontuacaoGreaterThan` com `@EntityGraph(usuario)`, `RankingService.top10`, `RankingController` e `LinhaRankingResponse` (sem id). `RankingGlobalTest` (unidade; ids definidos por ReflectionTestUtils) e `RankingApiTest` cobrem R4.1 a R4.8. `RankingApiTest` limpa partidas em `@AfterEach` pelo mesmo motivo do HistoricoApiTest. README e requests.http atualizados (rota e exemplo). Red observado só como falha de compilação (classes inexistentes).
 
-- [ ] 4. Devolver a `posicaoRanking` no registro e documentar a limitação da pontuação
-  - status: review
+- [x] 4. Devolver a `posicaoRanking` no registro e documentar a limitação da pontuação
+  - status: done
   - Em `PartidaService.registrar`, depois do `save`: se `VITORIA` e `pontuacao > 0`, calcular o ranking com `RankingGlobal` e devolver a posição da linha cuja partida é a recém-salva; senão `null`.
   - Testes em `RegistroPartidaApiTest` para R1.4, R1.5 (derrota, pontuação 0, negativa, pior que a própria melhor, 11º) e R1.6 (empate com a própria anterior → `null`).
   - `servidor/README.md`: seção "Limitações" (R6.3; incluir também o ranking calculado em memória) e revisão final da tabela da API. Conferir o fluxo completo cadastro → login → partidas → histórico → ranking pelo `requests.http` com `bootRun`.
