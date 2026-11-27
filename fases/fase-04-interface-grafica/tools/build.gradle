@@ -1,0 +1,24 @@
+// Ferramentas de build: gera as imagens e os sons de core/assets.
+// Não entra no jogo empacotado (o lwjgl3 não depende deste módulo).
+dependencies {
+    // Só para ler o catálogo (missaomarte.gdx.catalogo); nada do libGDX é usado aqui.
+    implementation project(':core')
+
+    testImplementation platform('org.junit:junit-bom:5.10.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.register('gerarAssets', JavaExec) {
+    group = 'assets'
+    description = 'Gera as imagens e os sons em core/assets.'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'missaomarte.tools.GeradorAssets'
+    args rootProject.file('core/assets').absolutePath
+}
+
+test {
+    useJUnitPlatform()
+    // Pasta dos assets commitados, para comparar com o que o gerador produz.
+    systemProperty 'missaomarte.assets', rootProject.file('core/assets').absolutePath
+}
