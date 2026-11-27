@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Align;
@@ -14,12 +15,13 @@ import com.badlogic.gdx.utils.Align;
 import missaomarte.domain.ElementoMapa;
 import missaomarte.domain.TipoElemento;
 import missaomarte.gdx.ControlePartida;
-import missaomarte.gdx.CoresElemento;
 import missaomarte.gdx.DestinoFim;
 import missaomarte.gdx.MapaGeometria;
 import missaomarte.gdx.MapeadorTeclas;
 import missaomarte.gdx.MissaoMarteGame;
+import missaomarte.gdx.Recursos;
 import missaomarte.gdx.TelaBase;
+import missaomarte.gdx.catalogo.Imagem;
 
 /**
  * Partida: converte tecla em {@code Acao} (via {@link MapeadorTeclas} e {@link ControlePartida})
@@ -33,8 +35,6 @@ public class TelaPartida extends TelaBase {
     private static final float PAINEL_X = 560f;
     private static final float PAINEL_LARGURA = 230f;
     private static final float PAINEL_TOPO = 580f;
-    private static final float MARGEM_ELEMENTO = 3f;
-    private static final float MARGEM_NAVE = 8f;
     private static final Color COR_FUNDO_GRADE = new Color(0.10f, 0.10f, 0.18f, 1f);
     private static final Color COR_LINHA_GRADE = new Color(0.30f, 0.30f, 0.42f, 1f);
 
@@ -89,7 +89,7 @@ public class TelaPartida extends TelaBase {
         List<ElementoMapa> elementos = elementosEmOrdemDeDesenho();
         desenharGrade();
         desenharElementos(elementos);
-        desenharTextos(elementos);
+        desenharTextos();
     }
 
     // Base primeiro, nave por último: a nave aparece por cima do que estiver na mesma célula.
@@ -126,28 +126,28 @@ public class TelaPartida extends TelaBase {
         shapes.end();
     }
 
+    // Terreno em cada célula e, por cima, a imagem de cada elemento escolhida pelo símbolo.
     private void desenharElementos(List<ElementoMapa> elementos) {
-        ShapeRenderer shapes = game.getShapeRenderer();
-        shapes.begin(ShapeType.Filled);
-        for (ElementoMapa elemento : elementos) {
-            float margem = elemento.tipo() == TipoElemento.NAVE ? MARGEM_NAVE : MARGEM_ELEMENTO;
-            shapes.setColor(CoresElemento.de(elemento.tipo()));
-            shapes.rect(geometria.x(elemento.posicao().x()) + margem,
-                    geometria.y(elemento.posicao().y()) + margem,
-                    geometria.lado() - 2 * margem, geometria.lado() - 2 * margem);
+        SpriteBatch batch = game.getBatch();
+        Recursos recursos = game.getRecursos();
+        float lado = geometria.lado();
+        batch.begin();
+        int n = geometria.celulasPorLado();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                batch.draw(recursos.quadro(Imagem.TERRENO, 0),
+                        geometria.origemX() + i * lado, geometria.origemY() + j * lado, lado, lado);
+            }
         }
-        shapes.end();
+        for (ElementoMapa elemento : elementos) {
+            batch.draw(recursos.quadro(Imagem.doSimbolo(elemento.simbolo()), 0),
+                    geometria.x(elemento.posicao().x()), geometria.y(elemento.posicao().y()), lado, lado);
+        }
+        batch.end();
     }
 
-    private void desenharTextos(List<ElementoMapa> elementos) {
+    private void desenharTextos() {
         game.getBatch().begin();
-        float meioDaFonte = game.getFonte().getCapHeight() / 2f;
-        for (ElementoMapa elemento : elementos) {
-            escrever(String.valueOf(elemento.simbolo()),
-                    geometria.x(elemento.posicao().x()),
-                    geometria.y(elemento.posicao().y()) + geometria.lado() / 2f + meioDaFonte,
-                    geometria.lado(), Align.center, Color.BLACK, 1f);
-        }
         desenharPainel();
         game.getBatch().end();
     }

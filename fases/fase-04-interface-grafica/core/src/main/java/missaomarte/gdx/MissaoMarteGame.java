@@ -46,6 +46,7 @@ public class MissaoMarteGame extends Game {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private BitmapFont fonte;
+    private Recursos recursos;
 
     public MissaoMarteGame(MissaoFactory fabrica, Random random, Clock clock, RankingService ranking) {
         this.fabrica = fabrica;
@@ -61,6 +62,8 @@ public class MissaoMarteGame extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         fonte = new BitmapFont();
+        recursos = new Recursos();
+        recursos.carregar();
         setScreen(new TelaMenu(this));
     }
 
@@ -73,6 +76,7 @@ public class MissaoMarteGame extends Game {
         batch.dispose();
         shapeRenderer.dispose();
         fonte.dispose();
+        recursos.dispose();
     }
 
     // ---------- Navegação ----------
@@ -148,6 +152,10 @@ public class MissaoMarteGame extends Game {
 
     public ShapeRenderer getShapeRenderer() {
         return shapeRenderer;
+    }
+
+    public Recursos getRecursos() {
+        return recursos;
     }
 
     public BitmapFont getFonte() {

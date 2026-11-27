@@ -21,3 +21,6 @@ run {
         jvmArgs '-XstartOnFirstThread'
     }
 }
+
+// Os assets ficam em core/assets; no classpath, o Gdx.files.internal os encontra.
+sourceSets.main.resources.srcDirs += [rootProject.file("core/assets")]

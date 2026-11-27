@@ -17,12 +17,12 @@
   - notas: Catálogo `Imagem` (enum, sem com.badlogic, `doSimbolo` por tabela) e módulo `tools` (`GeradorAssets`, `GeradorImagens` com Java2D, semente fixa; `gerarAssets` grava em `core/assets`). 16 PNG e `CREDITOS.md` (só imagens) gerados e commitados. Testes: `ImagemTest` (core), `ImagensAssetsTest`, `GeradorAssetsTest` (R2.2 a R2.4, só imagens), `CreditosTest` (tools). Decisões fora da spec: `CREDITOS.md` é escrito pelo gerador (`GeradorAssets.creditos()`), e `CreditosTest` também confere que o commitado é igual ao gerado; `GeradorImagens.desenhar` é público. Arte simples a olho, vale conferir no QA. A tarefa 4 deve estender `creditos()` com a seção de sons e regerar. Alfa de canto: teste usa pixel (0,0).
 
 - [ ] 3. Carregar os recursos uma vez no jogo e desenhar a partida com as imagens
-  - status: todo
+  - status: review
   - `Recursos` (`AssetManager`, sem `static`) só com as imagens nesta tarefa; `MissaoMarteGame` cria e carrega em `create()` antes da primeira tela e libera em `dispose()`; `lwjgl3/build.gradle` com `core/assets` nos resources.
   - `TelaPartida` desenha `TERRENO` em cada célula e o quadro 0 de `Imagem.doSimbolo(elemento.simbolo())`, nave por último; remove retângulos, símbolos escritos e `CoresElemento` se ficar sem uso. Painel e fim iguais.
   - Conferir na janela: imagens no lugar dos retângulos, nave sobre a base no início, `W/↑` sobe na tela; renomear um PNG e ver a mensagem de erro com o caminho (R6.4); `grep instanceof` e `grep "new Texture"` na camada `gdx`.
   - _Requisitos: R5.4, R6, R7_
-  - notas:
+  - notas: `Recursos` (AssetManager, sem static; `carregar()` síncrono só com as imagens, log "n arquivos carregados"; `textura`, `quadro(Imagem,i)`, `dispose`) criado em `MissaoMarteGame.create()` antes da primeira tela e liberado em `dispose()`; `getRecursos()`. `TelaPartida` desenha `TERRENO` em cada célula e o quadro 0 de `Imagem.doSimbolo(simbolo)` (ordem base, demais, nave mantida); retângulos, símbolos escritos e `CoresElemento` removidos (sem teste próprio). `lwjgl3/build.gradle` com `core/assets` em resources. `grep instanceof` na camada gdx: vazio; `new Texture`: vazio (só `new TextureRegion` em Recursos). Sem teste novo: `Recursos` exige OpenGL (design). Não verificado em janela (modo subagente): imagens no lugar dos retângulos, nave sobre a base, `W/↑` e erro de arquivo renomeado (R6.4, a mensagem vem do AssetManager) ficam para o QA. `desenharGrade` ainda desenha fundo e linhas sob o terreno (ficam cobertos; limpar é sugestão fora de escopo).
 
 - [ ] 4. Criar o catálogo `Som` e gerar, commitar e carregar os sons e a música
   - status: todo
