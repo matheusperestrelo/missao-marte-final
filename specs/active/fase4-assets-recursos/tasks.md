@@ -8,8 +8,8 @@
   - _Requisitos: R1, R8.2_
   - notas: Pasta copiada de `git ls-files fases/fase-03-libgdx` (79 arquivos, sem ranking.json/build/.gradle); README: título e 2 caminhos `fase-03-libgdx` trocados por Fase 4 / `fase-04-interface-grafica`. `diff -r` de main e test em domain, application e infrastructure: sem saída (idênticos). `diff -rq` da pasta toda: só README.md difere. check.sh passou (inclui build/testes da fase 4). Não foi possível abrir a janela (`./gradlew :lwjgl3:run`) em modo subagente: conferência manual fica para o QA.
 
-- [ ] 2. Criar o catálogo `Imagem` com símbolo → imagem e o módulo `tools` gerando e commitando as imagens
-  - status: review
+- [x] 2. Criar o catálogo `Imagem` com símbolo → imagem e o módulo `tools` gerando e commitando as imagens
+  - status: done
   - TDD do `Imagem` (`ImagemTest`: R5.2, R5.3) em `core/.../gdx/catalogo/`, sem `com.badlogic`.
   - Módulo `tools` (`settings.gradle`, `tools/build.gradle` com `gerarAssets` e `systemProperty 'missaomarte.assets'`), `GeradorAssets` e `GeradorImagens`. Rodar `./gradlew :tools:gerarAssets` e commitar `core/assets/imagens/*.png` e `core/assets/CREDITOS.md` (nesta tarefa, só com as imagens).
   - Testes em `tools`: `ImagensAssetsTest` (R3), `GeradorAssetsTest` só para imagens (R2.2 a R2.4) e `CreditosTest` (R2.5).
