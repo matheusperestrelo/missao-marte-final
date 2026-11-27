@@ -1,7 +1,7 @@
 # Tarefas: fase5-servidor-partidas-ranking
 
-- [ ] 1. Registrar partidas em `POST /api/partidas` com o usuário do token e validação completa
-  - status: review
+- [x] 1. Registrar partidas em `POST /api/partidas` com o usuário do token e validação completa
+  - status: done
   - Fatia vertical: `Dificuldade`, `Resultado`, `Partida`, `PartidaRepository`, `NovaPartida`, `PartidaRegistrada`, `PartidaService.registrar` (por enquanto com `posicaoRanking = null` sempre), `PartidaController` (`POST`), `NovaPartidaRequest`, `PartidaRegistradaResponse`, e os casos novos no `TratadorDeErros` (enum e tipo inválidos no corpo).
   - Testes: `RegistroPartidaApiTest` (R1.1, R1.2, R1.3, R1.7 e teste de leitura da partida salva, R5.1) e `ValidacaoPartidaApiTest` (R2 inteiro). Se o decimal passar como inteiro, ligar `spring.jackson.deserialization.accept-float-as-int=false` e anotar aqui.
   - Acrescentar `POST /api/partidas` à tabela do `servidor/README.md` e exemplos ao `requests.http` (vitória, derrota, inválido).
