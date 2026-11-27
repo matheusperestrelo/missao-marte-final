@@ -1,0 +1,26 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+}
+
+application {
+    mainClass = 'missaomarte.lwjgl3.Lwjgl3Launcher'
+}
+
+run {
+    // O ranking.json fica na raiz da fase, não em lwjgl3/.
+    workingDir = rootProject.projectDir
+
+    // No macOS o LWJGL3 só funciona se a JVM iniciar na primeira thread.
+    if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        jvmArgs '-XstartOnFirstThread'
+    }
+}
+
+// Os assets ficam em core/assets; no classpath, o Gdx.files.internal os encontra.
+sourceSets.main.resources.srcDirs += [rootProject.file("core/assets")]

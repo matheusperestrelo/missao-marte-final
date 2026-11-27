@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-27.** Diferenças do planejado: o `CREDITOS.md` é escrito pelo próprio gerador (`GeradorAssets.creditos()`) e o `CreditosTest` também confere que o arquivo commitado é igual ao gerado (desvio aceito na revisão 02-r1); `Recursos` não tem teste automatizado (exige OpenGL) e foi conferido só no QA manual. Ficaram como sugestões abertas para a spec 16 (ver `reviews/final.md`): `Recursos.quadro()` cria um `TextureRegion` por chamada, `desenharGrade()` pinta fundo e linhas cobertos pelo terreno, `Recursos.som(Som.MUSICA)` falha em tempo de execução (usar `musica()`), nomes de `test_R2_2`/`test_R2_3` defasados, README da Fase 4 ainda descreve a Fase 3 e testes de R3.1 e do canto transparente cobrem só parte dos casos.
+
 # Requisitos: fase4-assets-recursos
 
 **Issue:** a criar ("[Fase 4] Assets e recursos") · **Trilha:** C · **Fase:** 4 · **Depende de:** 11 (`fase3-partida`)
