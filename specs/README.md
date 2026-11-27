@@ -10,7 +10,7 @@
 
 | Ordem | Spec | Issue | Trilha | Depende de | Status | Resumo |
 |---|---|---|---|---|---|---|
-| 15 | fase4-assets-recursos | a criar | C | 11 | em andamento | Cria a Fase 4 copiando a Fase 3; módulo `tools` gera e commita imagens (PNG, animações em faixa) e sons (WAV sintetizados, música de ~8 s) em `core/assets`; catálogo `Imagem`/`Som` sem libGDX, símbolo → imagem (genérica se desconhecido), `Recursos` com `AssetManager` carregado uma vez; partida desenhada com imagens |
+| 15 | fase4-assets-recursos | a criar | C | 11 | aguardando QA | Cria a Fase 4 copiando a Fase 3; módulo `tools` gera e commita imagens (PNG, animações em faixa) e sons (WAV sintetizados, música de ~8 s) em `core/assets`; catálogo `Imagem`/`Som` sem libGDX, símbolo → imagem (genérica se desconhecido), `Recursos` com `AssetManager` carregado uma vez; partida desenhada com imagens |
 | 16 | fase4-interface-grafica | a criar | C | 15 | na fila | `MundoRenderer` com animações e nave girando, movimento suave (~12 células/s), um som por turno e explosão por cima, música em laço (pausa no fim, volta no Menu), caixa final, HUD (barra, painel, rodapé), fundo e "selecionar" nas outras telas, semente `-Dmissaomarte.semente=N`; README e `docs/fase-04-tutorial.md` |
 
 ## Backlog (planned/)
