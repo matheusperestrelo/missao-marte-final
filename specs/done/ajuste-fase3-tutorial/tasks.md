@@ -1,3 +1,5 @@
+> **Concluída em 2026-11-26.** Diferenças do planejado: entregue no mesmo PR #38 das specs 8 a 11, sem `reviews/`. Entregou `fases/fase-03-libgdx/README.md` e `docs/fase-03-tutorial.md` (9 limitações, mais que as 3 mínimas); nenhum arquivo de código foi alterado por este ajuste.
+
 # Tarefas: ajuste-fase3-tutorial
 
 **Issue:** #35 · **Fase:** 3 · **Depende de:** 10 (`fase3-telas-menu`), 11 (`fase3-partida`) · **Branch:** `chore/issue-35-fase3-tutorial`
@@ -11,8 +13,8 @@ de plataforma"). Pontos de partida: as specs `specs/done/fase3-*`
 (requisitos, design, `notas:` das tarefas e `reviews/final.md`),
 `docs/contratos.md` e o tutorial da Fase 2 como modelo de estilo.
 
-- [ ] 1. Escrever `fases/fase-03-libgdx/README.md` e `docs/fase-03-tutorial.md`
-  - status: todo
+- [x] 1. Escrever `fases/fase-03-libgdx/README.md` e `docs/fase-03-tutorial.md`
+  - status: done
   - Não alterar nenhum arquivo fora desses dois: nada em `fases/*/core`, `fases/*/lwjgl3`, `src/`, testes ou build. O `check.sh` deve continuar passando.
   - Toda afirmação sobre o código cita a classe real (`MissaoMarteGame`, `TelaBase`, `Lwjgl3Launcher`, `RankingService`, `MapaGeometria`, `MapeadorTeclas`, `ControlePartida` etc.), com trecho curto quando ajudar.
   - **README da fase:** requisito (JDK 17), `./gradlew :lwjgl3:run` (e o porquê do `-XstartOnFirstThread` no macOS), `./gradlew test`, onde fica o `ranking.json` e as teclas do jogo.
@@ -26,4 +28,4 @@ de plataforma"). Pontos de partida: as specs `specs/done/fase3-*`
     7. **Testes:** o que tem teste automático (sem janela nem OpenGL) e o que é verificado à mão.
     8. **Limitações reais** da fase (no mínimo 3), tiradas das `notas:` e dos `reviews/final.md` das specs 8 a 11. Exemplos a confirmar: acentos na fonte padrão, painel estreito para mensagens longas, sem pausa ao minimizar, visual só com formas.
   - _Requisitos: nenhum (ajuste)_
-  - notas:
+  - notas: (regularização) implementada fora do workflow no PR #38 (commit 943322f, junto com as outras specs da Fase 3), sem `review` por tarefa e sem `reviews/`. Conferida em 2026-11-26 com o gate: `.workflow/check.sh` passou (`./gradlew clean build` da Fase 3: 157 testes, 0 falhas). Código de `domain`/`application`/`infrastructure` comparado com a Fase 2: só mudaram os `import` e o ranking migrou para `application.ranking`. Pendente para o QA: abrir a janela (`./gradlew :lwjgl3:run`) e conferir à mão os itens marcados como manuais.
