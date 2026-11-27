@@ -17,8 +17,8 @@
   - _Requisitos: R3, R5, R6_
   - notas: `PartidaService.historico` (dataHora ↓, id ↓), `GET /api/partidas/minhas`, `PartidaResponse` e `PaginaPartidasResponse` criados; `HistoricoApiTest` cobre R3.1 a R3.9. Parâmetros validados com `@Min`/`@Max` direto nos `@RequestParam`, SEM `@Validated` na classe (o design previa `@Validated`, mas ele troca a exceção por `ConstraintViolationException`; sem ele o Spring 7 lança `HandlerMethodValidationException`, que o `TratadorDeErros` agora trata, junto com `handleTypeMismatch` para `tamanho=abc`; ambos devolvem 400 com `erros [{campo, mensagem}]` citando o parâmetro). `HistoricoApiTest` limpa as partidas também em `@AfterEach`, senão o `deleteAll` de usuários de outras classes de teste (ex.: LoginApiTest) quebra pela chave estrangeira. Sugestão fora de escopo: `RegistroPartidaApiTest`/`ValidacaoPartidaApiTest` deixam partidas no banco ao fim e dependem da ordem de execução. README e requests.http atualizados.
 
-- [ ] 3. Calcular o ranking global Top 10 e expor em `GET /api/ranking`
-  - status: review
+- [x] 3. Calcular o ranking global Top 10 e expor em `GET /api/ranking`
+  - status: done
   - `RankingGlobal` (função pura com o comparador pontuação ↓, duração ↑, `dataHora` ↑, `id` ↑; uma linha por jogador; corte em 10; posições 1..N), `LinhaRanking`, consulta `findByResultadoAndPontuacaoGreaterThan` trazendo o `usuario` junto, `RankingService`, `RankingController`, `LinhaRankingResponse` (sem `id`).
   - Testes `RankingGlobalTest` (unidade, sem Spring) e `RankingApiTest` com os casos de R4.
   - Acrescentar a rota ao README e ao `requests.http`.
