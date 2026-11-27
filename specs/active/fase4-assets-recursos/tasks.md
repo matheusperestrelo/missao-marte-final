@@ -1,12 +1,12 @@
 # Tarefas: fase4-assets-recursos
 
 - [ ] 1. Criar `fases/fase-04-interface-grafica/` copiando a Fase 3
-  - status: todo
+  - status: review
   - Copiar tudo o que é versionado em `fases/fase-03-libgdx/` (sem `ranking.json`, `build/`, `.gradle/`). No `README.md` copiado, trocar só o título e o nome da pasta para Fase 4. Nenhum `.java` muda.
   - Conferir com `diff -r` que `domain`, `application` e `infrastructure` (main e test) são idênticos aos da Fase 3, registrar a saída nas notas, rodar o `check.sh` e abrir a janela com `./gradlew :lwjgl3:run`.
   - Commit sugerido: `feat: cria a fase 4 a partir da fase 3`.
   - _Requisitos: R1, R8.2_
-  - notas:
+  - notas: Pasta copiada de `git ls-files fases/fase-03-libgdx` (79 arquivos, sem ranking.json/build/.gradle); README: título e 2 caminhos `fase-03-libgdx` trocados por Fase 4 / `fase-04-interface-grafica`. `diff -r` de main e test em domain, application e infrastructure: sem saída (idênticos). `diff -rq` da pasta toda: só README.md difere. check.sh passou (inclui build/testes da fase 4). Não foi possível abrir a janela (`./gradlew :lwjgl3:run`) em modo subagente: conferência manual fica para o QA.
 
 - [ ] 2. Criar o catálogo `Imagem` com símbolo → imagem e o módulo `tools` gerando e commitando as imagens
   - status: todo
