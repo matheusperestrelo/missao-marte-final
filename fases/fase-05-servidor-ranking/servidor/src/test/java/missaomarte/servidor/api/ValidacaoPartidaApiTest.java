@@ -12,6 +12,7 @@ import missaomarte.servidor.application.EmissorDeToken;
 import missaomarte.servidor.domain.PartidaRepository;
 import missaomarte.servidor.domain.Usuario;
 import missaomarte.servidor.domain.UsuarioRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ class ValidacaoPartidaApiTest {
         usuarios.deleteAll();
         Usuario ana = usuarios.save(new Usuario("ana", "hash", Instant.now()));
         autorizacao = "Bearer " + emissor.emitir(ana.getId()).token();
+    }
+
+    @AfterEach
+    void limparPartidas() {
+        // outras classes de teste apagam usuários e não conhecem a chave estrangeira
+        partidas.deleteAll();
     }
 
     private static String corpo(String dificuldade, String resultado, String pontuacao,

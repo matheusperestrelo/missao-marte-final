@@ -17,6 +17,7 @@ import missaomarte.servidor.domain.PartidaRepository;
 import missaomarte.servidor.domain.Resultado;
 import missaomarte.servidor.domain.Usuario;
 import missaomarte.servidor.domain.UsuarioRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,12 @@ class RegistroPartidaApiTest {
         relogio.fixar(Instant.now());
     }
 
+    @AfterEach
+    void limparPartidas() {
+        // outras classes de teste apagam usuários e não conhecem a chave estrangeira
+        partidas.deleteAll();
+    }
+
     private Usuario criarUsuario(String nome) {
         return usuarios.save(new Usuario(nome, "hash", Instant.now()));
     }
@@ -84,7 +91,7 @@ class RegistroPartidaApiTest {
                 .andExpect(jsonPath("$.duracaoSegundos").value(95))
                 .andExpect(jsonPath("$.movimentos").value(40))
                 .andExpect(jsonPath("$.dataHora").isString())
-                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+                .andExpect(jsonPath("$.posicaoRanking").value(1));
     }
 
     @Test
@@ -155,5 +162,91 @@ class RegistroPartidaApiTest {
         assertThat(p.getDuracaoSegundos()).isEqualTo(95);
         assertThat(p.getMovimentos()).isEqualTo(40);
         assertThat(p.getDataHora().truncatedTo(ChronoUnit.SECONDS)).isEqualTo(fixo);
+    }
+
+    private static final Instant ANTES = Instant.parse("2020-01-01T00:00:00Z");
+
+    private void gravar(Usuario dono, Resultado resultado, int pontuacao, int duracao) {
+        partidas.save(new Partida(dono, Dificuldade.MEDIO, resultado, pontuacao, duracao, 10,
+                ANTES));
+    }
+
+    private static String corpo(String resultado, int pontuacao, int duracao) {
+        return """
+                {"dificuldade":"MEDIO","resultado":"%s","pontuacao":%d,
+                 "duracaoSegundos":%d,"movimentos":10}""".formatted(resultado, pontuacao, duracao);
+    }
+
+    @Test
+    void r1_4_primeiraVitoriaNumRankingVazioFicaEmPrimeiro() throws Exception {
+        Usuario ana = criarUsuario("ana");
+
+        registrar(bearer(ana), corpo("VITORIA", 500, 60))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.posicaoRanking").value(1));
+    }
+
+    @Test
+    void r1_4_vitoriaQueEntraEmTerceiroDevolvePosicaoTres() throws Exception {
+        Usuario ana = criarUsuario("ana");
+        gravar(criarUsuario("bia"), Resultado.VITORIA, 900, 60);
+        gravar(criarUsuario("caio"), Resultado.VITORIA, 800, 60);
+        gravar(criarUsuario("dani"), Resultado.VITORIA, 100, 60);
+
+        registrar(bearer(ana), corpo("VITORIA", 700, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value(3));
+    }
+
+    @Test
+    void r1_5_derrotaDevolvePosicaoNula() throws Exception {
+        Usuario ana = criarUsuario("ana");
+
+        registrar(bearer(ana), corpo("DERROTA", 5000, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+    }
+
+    @Test
+    void r1_5_vitoriaComPontuacaoZeroDevolvePosicaoNula() throws Exception {
+        Usuario ana = criarUsuario("ana");
+
+        registrar(bearer(ana), corpo("VITORIA", 0, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+    }
+
+    @Test
+    void r1_5_vitoriaComPontuacaoNegativaDevolvePosicaoNula() throws Exception {
+        Usuario ana = criarUsuario("ana");
+
+        registrar(bearer(ana), corpo("VITORIA", -50, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+    }
+
+    @Test
+    void r1_5_vitoriaPiorQueAMelhorDoProprioJogadorDevolvePosicaoNula() throws Exception {
+        Usuario ana = criarUsuario("ana");
+        gravar(ana, Resultado.VITORIA, 900, 60);
+
+        registrar(bearer(ana), corpo("VITORIA", 400, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+    }
+
+    @Test
+    void r1_5_vitoriaEmDecimoPrimeiroDevolvePosicaoNula() throws Exception {
+        Usuario ana = criarUsuario("ana");
+        for (int i = 0; i < 10; i++) {
+            gravar(criarUsuario("rival" + i), Resultado.VITORIA, 1000 + i, 60);
+        }
+
+        registrar(bearer(ana), corpo("VITORIA", 500, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
+    }
+
+    @Test
+    void r1_6_empateComAPropriaAnteriorMantemAAnteriorEDevolveNulo() throws Exception {
+        Usuario ana = criarUsuario("ana");
+        gravar(ana, Resultado.VITORIA, 700, 60);
+
+        registrar(bearer(ana), corpo("VITORIA", 700, 60))
+                .andExpect(jsonPath("$.posicaoRanking").value((Object) null));
     }
 }

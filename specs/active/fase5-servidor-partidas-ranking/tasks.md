@@ -26,9 +26,9 @@
   - notas: `RankingGlobal` (função pura, comparador pontuação ↓, duração ↑, dataHora ↑, id ↑; uma linha por usuário; corte 10), `LinhaRanking`, `findByResultadoAndPontuacaoGreaterThan` com `@EntityGraph(usuario)`, `RankingService.top10`, `RankingController` e `LinhaRankingResponse` (sem id). `RankingGlobalTest` (unidade; ids definidos por ReflectionTestUtils) e `RankingApiTest` cobrem R4.1 a R4.8. `RankingApiTest` limpa partidas em `@AfterEach` pelo mesmo motivo do HistoricoApiTest. README e requests.http atualizados (rota e exemplo). Red observado só como falha de compilação (classes inexistentes).
 
 - [ ] 4. Devolver a `posicaoRanking` no registro e documentar a limitação da pontuação
-  - status: todo
+  - status: review
   - Em `PartidaService.registrar`, depois do `save`: se `VITORIA` e `pontuacao > 0`, calcular o ranking com `RankingGlobal` e devolver a posição da linha cuja partida é a recém-salva; senão `null`.
   - Testes em `RegistroPartidaApiTest` para R1.4, R1.5 (derrota, pontuação 0, negativa, pior que a própria melhor, 11º) e R1.6 (empate com a própria anterior → `null`).
   - `servidor/README.md`: seção "Limitações" (R6.3; incluir também o ranking calculado em memória) e revisão final da tabela da API. Conferir o fluxo completo cadastro → login → partidas → histórico → ranking pelo `requests.http` com `bootRun`.
   - _Requisitos: R1, R6_
-  - notas:
+  - notas: `PartidaService.registrar` agora devolve a posição via `RankingGlobal` (VITORIA com pontuação > 0, linha da partida recém-salva; senão null). Testes R1.4, R1.5 (5 casos) e R1.6 em `RegistroPartidaApiTest`. Aprovado pelo usuário (via orquestrador): (a) `@AfterEach` com `partidas.deleteAll()` em `RegistroPartidaApiTest` e `ValidacaoPartidaApiTest`, sem mudar asserções; (b) troca da única asserção de `r1_1_registroValidoDa201ComOsCamposDaPartida` de `posicaoRanking` null para `value(1)` (o null era o provisório da tarefa 1; R1.4 pede 1). README: `posicaoRanking` explicada, seção Limitações (R6.3 e ranking em memória). `requests.http` já tinha todos os exemplos. O fluxo manual com `bootRun` (R6.4) não foi executado nesta sessão: fica para o QA. check.sh passou.

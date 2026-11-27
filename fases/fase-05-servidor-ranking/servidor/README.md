@@ -1,7 +1,7 @@
 # Servidor — Missão Marte
 
 API REST (Spring Boot 4.1.2, Java 17, H2 em arquivo). Estão no ar a saúde,
-o cadastro, o login e o registro de partidas, o histórico e o ranking; as demais rotas exigem token.
+o cadastro, o login, o registro de partidas, o histórico e o ranking; as demais rotas exigem token.
 
 ## Requisitos
 
@@ -48,7 +48,7 @@ sozinho, sem controle de versões nem reversão. Em produção, use migrações
 | GET | `/api/saude` | não | 200 `{"status":"ok"}` |
 | POST | `/api/usuarios` | não | 201 `{"id","nome"}` (com `Location`); 400 dados inválidos; 409 nome já existe |
 | POST | `/api/auth/login` | não | 200 `{"token","tipo":"Bearer","expiraEmSegundos":7200}`; 400 dados inválidos; 401 "Nome ou senha inválidos." (o mesmo corpo para usuário inexistente e senha errada) |
-| POST | `/api/partidas` | sim | 201 `{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora","posicaoRanking"}` (com `Location`; `posicaoRanking` é `null` por enquanto); 400 dados inválidos; 401 |
+| POST | `/api/partidas` | sim | 201 `{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora","posicaoRanking"}` (com `Location`; `posicaoRanking` é a posição (1 a 10) da partida no ranking, ou `null` se ela não é a melhor vitória do jogador no Top 10); 400 dados inválidos; 401 |
 | GET | `/api/partidas/minhas?pagina=0&tamanho=10` | sim | 200 `{"itens":[{"id","dificuldade","resultado","pontuacao","duracaoSegundos","movimentos","dataHora"}],"pagina","tamanho","totalItens","totalPaginas"}` só com as partidas do dono, da mais recente para a mais antiga; `pagina` ≥ 0 (padrão 0), `tamanho` de 1 a 50 (padrão 10); página além do fim → 200 com `itens: []`; 400 parâmetro fora da faixa ou não inteiro (`erros` cita o parâmetro); 401 |
 | GET | `/api/ranking` | sim | 200 lista de `{"posicao","nome","pontuacao","dificuldade","duracaoSegundos","movimentos","dataHora"}`, no máximo 10 linhas, uma por jogador (a melhor vitória, só `VITORIA` com `pontuacao` > 0), por pontuação ↓, depois menor duração, depois partida mais antiga; sem vitórias → `[]`; 401 |
 | qualquer outra | qualquer outra | sim | 401 `ProblemDetail` ("Autenticação necessária ou token inválido.") com `WWW-Authenticate: Bearer` |
@@ -84,5 +84,18 @@ todos obrigatórios. `dificuldade` é `FACIL`, `MEDIO` ou `DIFICIL`; `resultado`
 inteiros (decimal é recusado com 400). A partida pertence ao usuário do token: campos a
 mais no corpo (`usuarioId`, `nome`, `id`, `dataHora`) são ignorados, e a `dataHora` é do
 servidor, em UTC (ISO-8601).
+
+`posicaoRanking` vem preenchida só quando a partida é uma `VITORIA` com `pontuacao` > 0
+que, logo depois de salva, é a linha do jogador no Top 10. Derrota, pontuação 0 ou
+negativa, vitória pior que (ou empatada com) a melhor do próprio jogador e vitória
+fora do Top 10 devolvem `null`.
+
+## Limitações
+
+- O servidor não executa a lógica do jogo e não consegue provar que a pontuação enviada
+  é legítima: quem tem um token pode enviar a pontuação que quiser. As validações só
+  barram valores absurdos (faixas numéricas, enums, campos obrigatórios).
+- O ranking é calculado em memória a cada consulta, a partir de todas as vitórias com
+  pontuação > 0; serve para o porte deste projeto, não para muitos dados.
 
 Exemplos prontos em [`requests.http`](requests.http).
